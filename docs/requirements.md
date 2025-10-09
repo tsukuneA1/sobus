@@ -1,5 +1,4 @@
-## 要件 (https://docs.google.com/spreadsheets/d/1kes_jsUjmCYzL3CurdJzY3uCJvnFgUDqtTZzpUGx7A8/edit?usp=sharing)
-
+## 要件 
 - サークル名 (ロゴ)
 - 活動写真
 - M:ミッション,V:ビジョン,V:バリュー
@@ -20,6 +19,7 @@
     - 2月3月：サークルビジコン
 - ブログ機能(インスタチックな)
 - SNS(インスタDMのリンク)
+引用元: [ヒアリングシート](https://docs.google.com/spreadsheets/d/1kes_jsUjmCYzL3CurdJzY3uCJvnFgUDqtTZzpUGx7A8/edit?usp=sharing)
 
 ## サイトマップ
 - 共通ヘッダー,共通フッター
