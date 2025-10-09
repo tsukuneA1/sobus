@@ -19,6 +19,7 @@
     - 2月3月：サークルビジコン
 - ブログ機能(インスタチックな)
 - SNS(インスタDMのリンク)
+
 引用元: [ヒアリングシート](https://docs.google.com/spreadsheets/d/1kes_jsUjmCYzL3CurdJzY3uCJvnFgUDqtTZzpUGx7A8/edit?usp=sharing)
 
 ## サイトマップ
