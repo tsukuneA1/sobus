@@ -17,6 +17,11 @@ out/
 build/
 dist/
 
+# Docusaurus
+docusaurus/.docusaurus/
+docusaurus/build/
+docusaurus/node_modules/
+
 # IDE
 .vscode/
 .idea/

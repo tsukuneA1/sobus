@@ -65,6 +65,31 @@ docs/
   - 主要クエリパターン
   - インデックス推奨
 
+## 🚀 Docusaurusドキュメントサイト
+
+このリポジトリにはDocusaurusベースのドキュメントサイトが含まれています。
+
+### ローカル起動
+```bash
+cd docusaurus
+npm start
+```
+
+ブラウザで http://localhost:3000 が開きます。
+
+### ビルド
+```bash
+cd docusaurus
+npm run build
+```
+
+### デプロイ
+GitHub Pagesへのデプロイ:
+```bash
+cd docusaurus
+GIT_USER=tsukuneA1 npm run deploy
+```
+
 ## 関連リンク
 - [Figmaデザイン](https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/%E7%84%A1%E9%A1%8C?node-id=1-2&m=dev)
 - [ヒアリングシート](https://docs.google.com/spreadsheets/d/1kes_jsUjmCYzL3CurdJzY3uCJvnFgUDqtTZzpUGx7A8/edit?usp=sharing)
