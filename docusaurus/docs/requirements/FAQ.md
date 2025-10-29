@@ -1,4 +1,8 @@
-## 質問
+---
+sidebar_label: FAQ
+title: FAQ
+---
+
 - MVVの具体的な表示要素を教えてください
     - Mission
         社会課題とビジネスの架け橋になる

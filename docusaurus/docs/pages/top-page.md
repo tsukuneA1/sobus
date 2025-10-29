@@ -1,4 +1,7 @@
-# トップページ 仕様および実装方針
+---
+sidebar_label: トップページ
+title: トップページ
+---
 
 参照デザイン: [Figma](https://www.figma.com/design/YnVHGwlPC3uApYcexZDlen/%E3%82%BD%E3%83%BC%E3%83%93%E3%82%BA%E3%80%80%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3?node-id=5-138&t=s3f3lKF89jaOHeAf-4)
 

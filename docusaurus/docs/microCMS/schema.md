@@ -1,3 +1,7 @@
+---
+sidebar_label: スキーマ定義
+---
+
 # microCMS スキーマ定義
 
 ## プロジェクト (活動実績) API

@@ -1,4 +1,7 @@
-# プロジェクト詳細ページ 仕様および実装方針
+---
+sidebar_label: プロジェクト詳細ページ
+title: プロジェクト詳細ページ
+---
 
 参照デザイン: [Figma (node-id=1-867)](https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/%E7%84%A1%E9%A1%8C?node-id=1-867&m=dev)
 

@@ -1,4 +1,7 @@
-# 日々の活動ページ(ブログ) 仕様および実装方針
+---
+sidebar_label: 日々の活動ページ
+title: 日々の活動ページ
+---
 
 参照デザイン: [Figma (node-id=1-1058)](https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/%E7%84%A1%E9%A1%8C?node-id=1-1058&m=dev)
 

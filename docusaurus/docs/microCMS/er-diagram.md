@@ -1,3 +1,7 @@
+---
+sidebar_label: ER図
+---
+
 # microCMS ER図
 
 ```mermaid
