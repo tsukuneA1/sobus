@@ -88,7 +88,7 @@ const config: Config = {
             },
             {
               label: '要件定義',
-              to: '/requirements/requirements',
+              to: '/requirements/',
             },
             {
               label: 'microCMS設計',
