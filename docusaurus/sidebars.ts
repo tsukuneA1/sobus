@@ -32,7 +32,13 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'microCMS設計',
-      items: ['microCMS/project', 'microCMS/blog'],
+      items: [
+        'microCMS/index',
+        'microCMS/project',
+        'microCMS/blog',
+        'microCMS/site-setting',
+        'microCMS/gallery',
+      ],
     },
     'tech-stack',
   ],
