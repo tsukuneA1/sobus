@@ -21,12 +21,13 @@ sidebar_position: 1
 - **project-page.md**: プロジェクト詳細ページ
 - **daily-activity-page.md**: ブログ/日々の活動ページ
 
-### [microCMS設計](./microCMS/schema.md)
+### [microCMS設計](./microCMS/project.md)
 microCMS APIの設計ドキュメントです。
 
-- **projects.json**: プロジェクトAPIスキーマ定義
-- **schema.md**: スキーマ詳細
-- **er-diagram.md**: ER図
+- **project.md**: 活動実績API定義
+- **blog.md**: ブログAPI定義
+- **site-setting.md**: サイト設定API定義
+- **gallery.md**: ギャラリーAPI定義
 
 ## 🔗 関連リンク
 
