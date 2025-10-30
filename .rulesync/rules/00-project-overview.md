@@ -45,19 +45,58 @@ globs: ["*"]
 
 ```
 sobus/
-├── docusaurus/              # 技術ドキュメント（仕様書・設計書）
+├── app/                     # Next.js 15 App Router アプリケーション
+│   ├── src/
+│   │   ├── app/            # App Router (pages)
+│   │   │   ├── layout.tsx  # ルートレイアウト
+│   │   │   ├── page.tsx    # トップページ
+│   │   │   └── globals.css # グローバルスタイル
+│   │   ├── components/     # Reactコンポーネント
+│   │   │   └── ui/        # shadcn/uiコンポーネント
+│   │   ├── lib/           # ユーティリティ
+│   │   │   ├── microcms.ts # microCMSクライアント
+│   │   │   └── utils.ts    # ヘルパー関数
+│   │   └── types/         # TypeScript型定義
+│   │       └── microcms.ts # microCMS型定義
+│   ├── public/            # 静的ファイル
+│   ├── .env.local         # 環境変数（gitignore）
+│   ├── .env.example       # 環境変数テンプレート
+│   └── package.json
+├── docusaurus/            # 技術ドキュメント（仕様書・設計書）
 │   ├── docs/
-│   │   ├── requirements/    # 要件定義
-│   │   ├── pages/           # ページ実装方針
-│   │   ├── microCMS/        # microCMS API定義
+│   │   ├── requirements/  # 要件定義
+│   │   ├── pages/         # ページ実装方針
+│   │   ├── microCMS/      # microCMS API定義
 │   │   └── tech-stack.md
 │   └── sidebars.ts
-├── .rulesync/              # AI assistant統一ルール
+├── .rulesync/             # AI assistant統一ルール
 │   ├── rules/
 │   └── commands/
-├── CLAUDE.md               # Claude Code向けガイド
+├── CLAUDE.md              # 開発ガイド
 └── README.md
 ```
+
+## Next.js App Router構成
+
+### ページルーティング
+- `app/src/app/page.tsx` - トップページ (`/`)
+- `app/src/app/project/page.tsx` - プロジェクト一覧 (`/project`)
+- `app/src/app/project/[slug]/page.tsx` - プロジェクト詳細 (`/project/noto-volunteer-2024`)
+- `app/src/app/blog/page.tsx` - ブログ一覧 (`/blog`)
+- `app/src/app/blog/[slug]/page.tsx` - ブログ詳細 (`/blog/spring-orientation-2024`)
+
+### レイアウト
+- `app/src/app/layout.tsx` - ルートレイアウト（全ページ共通）
+- `app/src/app/project/layout.tsx` - プロジェクトセクション共通レイアウト（必要に応じて）
+
+### コンポーネント配置
+- `app/src/components/ui/` - shadcn/uiコンポーネント（Button, Card等）
+- `app/src/components/` - カスタムコンポーネント（Header, Footer, ProjectCard等）
+
+### データフェッチ
+- `app/src/lib/microcms.ts` - microCMSクライアントの初期化
+- Server Componentで直接データフェッチ（async/await）
+- ISR対応（revalidate設定）
 
 ## 開発方針
 

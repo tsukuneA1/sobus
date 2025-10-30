@@ -41,25 +41,43 @@
 
 ```
 sobus/
-├── docusaurus/              # 技術ドキュメント（仕様書・設計書）
+├── app/                     # Next.js 15 App Router アプリケーション
+│   ├── src/
+│   │   ├── app/            # App Router (pages)
+│   │   │   ├── layout.tsx  # ルートレイアウト
+│   │   │   ├── page.tsx    # トップページ
+│   │   │   └── globals.css # グローバルスタイル
+│   │   ├── components/     # Reactコンポーネント
+│   │   │   └── ui/        # shadcn/uiコンポーネント
+│   │   ├── lib/           # ユーティリティ
+│   │   │   ├── microcms.ts # microCMSクライアント
+│   │   │   └── utils.ts    # ヘルパー関数
+│   │   └── types/         # TypeScript型定義
+│   │       └── microcms.ts # microCMS型定義
+│   ├── public/            # 静的ファイル
+│   ├── .env.local         # 環境変数（gitignore）
+│   ├── .env.example       # 環境変数テンプレート
+│   ├── next.config.ts     # Next.js設定
+│   ├── tsconfig.json      # TypeScript設定
+│   ├── tailwind.config.ts # Tailwind設定
+│   ├── components.json    # shadcn/ui設定
+│   └── package.json
+├── docusaurus/            # 技術ドキュメント（仕様書・設計書）
 │   ├── docs/
-│   │   ├── index.md         # ドキュメントトップ
-│   │   ├── requirements/    # 要件定義
-│   │   │   ├── requirements.md
-│   │   │   └── FAQ.md
-│   │   ├── pages/           # ページ実装方針
-│   │   │   ├── top-page.md
-│   │   │   ├── project-page.md
-│   │   │   └── daily-activity-page.md
-│   │   ├── microCMS/        # microCMS API定義
-│   │   │   ├── index.md     # API概要
-│   │   │   ├── project.md   # 活動実績API
-│   │   │   ├── blog.md      # ブログAPI
-│   │   │   ├── site-setting.md  # サイト設定API
-│   │   │   └── gallery.md   # ギャラリーAPI
-│   │   └── tech-stack.md    # 技術選定
-│   └── sidebars.ts          # サイドバー構成
-└── README.md                # プロジェクトREADME
+│   │   ├── index.md       # ドキュメントトップ
+│   │   ├── requirements/  # 要件定義
+│   │   ├── pages/         # ページ実装方針
+│   │   ├── microCMS/      # microCMS API定義
+│   │   └── tech-stack.md
+│   └── sidebars.ts
+├── .rulesync/             # AI assistant統一ルール
+│   ├── rules/             # ルールソースファイル
+│   ├── commands/          # カスタムコマンド
+│   └── rulesync.jsonc     # rulesync設定
+├── .agents/               # 生成されたAIルール（gitignore）
+├── AGENTS.md              # 生成されたルールファイル（gitignore）
+├── CLAUDE.md              # 開発ガイド
+└── README.md              # プロジェクトREADME
 ```
 
 ## microCMS API設計
