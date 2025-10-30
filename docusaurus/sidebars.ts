@@ -26,13 +26,13 @@ const sidebars: SidebarsConfig = {
       items: [
         'pages/top-page',
         'pages/project-page',
-        'pages/daily-activity-page',
+        'pages/blog-page',
       ],
     },
     {
       type: 'category',
       label: 'microCMS設計',
-      items: ['microCMS/schema', 'microCMS/er-diagram'],
+      items: ['microCMS/project', 'microCMS/blog'],
     },
     'tech-stack',
   ],

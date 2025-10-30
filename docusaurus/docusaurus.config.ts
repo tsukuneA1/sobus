@@ -53,6 +53,11 @@ const config: Config = {
     ],
   ],
 
+  themes: ['@docusaurus/theme-mermaid'],
+  markdown: {
+    mermaid: true,
+  },
+
 
   themeConfig: {
     // Replace with your project's social card
@@ -92,7 +97,7 @@ const config: Config = {
             },
             {
               label: 'microCMS設計',
-              to: '/microCMS/schema',
+              to: '/microCMS/',
             },
           ],
         },
