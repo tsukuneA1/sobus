@@ -1,6 +1,6 @@
 ---
-sidebar_label: プロジェクト詳細ページ
-title: プロジェクト詳細ページ
+sidebar_label: 活動実績ページ
+title: 活動実績ページ
 ---
 
 参照デザイン: [Figma (node-id=1-867)](https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/%E7%84%A1%E9%A1%8C?node-id=1-867&m=dev)
@@ -10,7 +10,7 @@ title: プロジェクト詳細ページ
 - 目的: プロジェクトの意義/プロセス/成果を具体的に伝える
 - KPI: プロジェクト閲覧完了率、関連プロジェクトへの遷移率、入会/問い合わせCTR
 
-## 2. 情報構成(IA)
+## 2. 情報構成
 1. プロジェクトヘッダー: タイトル、期間、参加人数、カテゴリ、ヒーロー画像
 2. 概要: 目的/背景/課題設定
 3. 活動内容・プロセス: ステップ/タイムライン、写真
@@ -63,11 +63,8 @@ title: プロジェクト詳細ページ
 - 一覧: `/projects` からの遷移、前後ナビ
 - パンくず: `ホーム > プロジェクト > 現在` を表示
 
-## 5. データモデル(概要)
-- Project: id, title, slug, period, members, goal, result, image, status, category, description, process, learnings, memberComments
-- ProjectMember: id, projectId, name, role, comment, avatar
-- ProjectMetric: id, projectId, label, value, unit
-- ProjectStep: id, projectId, order, title, body, images
+## 5. データモデル
+[microCMS スキーマ定義](../microCMS/projects.md)を参照
 
 ## 6. 取得・描画戦略
 - 生成: ISR(増分再生成) + 動的ルーティング
@@ -78,7 +75,3 @@ title: プロジェクト詳細ページ
 - 画像最適化: 適切なsrcset、遅延読み込み
 - メタ: タイトル/説明/OGPをプロジェクト単位で生成
 - 構造化データ: `Article` or `CreativeWork` を検討
-
-## 8. アクセシビリティ
-- 画像ALT必須、色コントラスト、フォーカスリング
-- キーボード操作でギャラリー/タイムライン操作可能

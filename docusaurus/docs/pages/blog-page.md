@@ -1,6 +1,6 @@
 ---
-sidebar_label: 日々の活動ページ
-title: 日々の活動ページ
+sidebar_label: ブログページ
+title: ブログページ
 ---
 
 参照デザイン: [Figma (node-id=1-1058)](https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/%E7%84%A1%E9%A1%8C?node-id=1-1058&m=dev)
@@ -59,14 +59,10 @@ title: 日々の活動ページ
 
 ## 4. ルーティング・情報設計
 - ルート: `/blog`, `/blog/[slug]`
-- フィルター: `/blog?category=xxx`, `/blog?tag=xxx`
-- アーカイブ: `/blog/archive/[year]/[month]`
+- フィルター: `/blog?category=xxx`
 
-## 5. データモデル(概要)
-- BlogPost: id, title, slug, content, excerpt, date, author, category, tags, images, status, viewCount
-- BlogCategory: id, name, slug, description, color
-- BlogTag: id, name, slug, count
-- BlogAuthor: id, name, avatar, bio
+## 5. データモデル
+[ブログ API定義](../microCMS/blog.md)を参照
 
 ## 6. 取得・描画戦略
 - 一覧: SSG + 増分再生成
@@ -77,7 +73,3 @@ title: 日々の活動ページ
 - 画像最適化: WebP対応、適切なsrcset
 - メタ: 記事単位でOGP生成
 - 構造化データ: `BlogPosting` スキーマ
-
-## 8. アクセシビリティ
-- 画像ALT必須、色コントラスト
-- キーボード操作でフィルター/ページネーション操作可能
