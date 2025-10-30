@@ -1,5 +1,5 @@
 ---
-root: true
+root: false
 targets: ["*"]
 description: "microCMS API design principles and conventions"
 globs: ["**/microCMS/**", "**/docs/microCMS/**"]

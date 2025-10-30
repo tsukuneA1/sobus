@@ -1,0 +1,25 @@
+{
+  // AI coding assistants to generate rules for
+  "targets": [
+    "claudecode",    // Claude Code (.claude/)
+    "cursor",        // Cursor (.cursorrules)
+    "copilot",       // GitHub Copilot (.github/copilot-instructions.md)
+    "geminicli",     // Gemini CLI (.gemini/)
+    "codexcli"       // Codex CLI (.codex/)
+  ],
+
+  // Features to enable
+  "features": [
+    "rules",         // Generate rule files
+    "commands"       // Generate custom commands
+  ],
+
+  // Base directories to scan for .rulesync folder
+  "baseDirs": ["."],
+
+  // Delete existing generated files before regenerating
+  "delete": true,
+
+  // Global mode (only for Claude Code)
+  "global": false
+}
