@@ -95,11 +95,8 @@ sobus/
 | フィールド | 種別 | 必須 | 説明 |
 |-----------|------|------|------|
 | title | text | ○ | プロジェクト名 |
-| slug | text | ○ | URL識別子 |
-| status | select | ○ | published/archived |
 | category | select | - | カテゴリ |
-| period | text | ○ | 実施期間 |
-| heroImage | media | ○ | メイン画像 |
+| thumbnail | media | ○ | サムネイル画像 |
 | description | richEditor | ○ | プロジェクト概要 |
 | gallery | media[] | - | ギャラリー画像 |
 
@@ -109,8 +106,6 @@ sobus/
 | フィールド | 種別 | 必須 | 説明 |
 |-----------|------|------|------|
 | title | text | ○ | タイトル |
-| slug | text | ○ | URL識別子 |
-| status | select | ○ | published/draft |
 | category | select | - | カテゴリ |
 | thumbnail | media | ○ | サムネイル画像 |
 | content | richEditor | ○ | 本文 |

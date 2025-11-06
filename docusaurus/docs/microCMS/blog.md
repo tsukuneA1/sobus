@@ -14,8 +14,6 @@ title: ブログ API定義
 | フィールドID | 名前 | 種別 | 必須 | 説明 |
 |------------|------|------|------|------|
 | `title` | タイトル | text | ○ | 記事のタイトル |
-| `slug` | スラッグ | text | ○ | URL用の識別子 (例: spring-orientation-2024) |
-| `status` | ステータス | select | ○ | 公開状態 (published/draft) |
 | `category` | カテゴリ | select | - | 活動種別 (ビジネスコンテスト/ボランティア活動/講演会/学習会/イベント/日常活動/その他) |
 
 #### コンテンツ
@@ -33,8 +31,6 @@ title: ブログ API定義
 {
   "id": "blog-001",
   "title": "新入生歓迎会を開催しました！",
-  "slug": "spring-orientation-2024",
-  "status": "published",
   "category": "event",
   "thumbnail": {
     "url": "https://images.microcms-assets.io/.../orientation-thumb.jpg"
@@ -57,19 +53,19 @@ title: ブログ API定義
 
 ### 1. 一覧取得（トップページ用）
 ```
-GET /api/v1/blog?limit=6&filters=status[equals]published&orders=-createdAt
+GET /api/v1/blog?limit=6&orders=-createdAt
 ```
-公開中の記事を最新6件取得
+最新6件の記事を取得
 
 ### 2. 詳細取得
 ```
-GET /api/v1/blog/[slug]
+GET /api/v1/blog/[id]
 ```
-スラッグで記事詳細を取得
+IDで記事詳細を取得
 
 ### 3. カテゴリ別取得
 ```
-GET /api/v1/blog?filters=category[equals]volunteer,status[equals]published
+GET /api/v1/blog?filters=category[equals]volunteer
 ```
 カテゴリでフィルタ
 
