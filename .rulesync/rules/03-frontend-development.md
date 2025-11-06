@@ -442,6 +442,122 @@ const ProjectListPage = async () => {
 export default ProjectListPage;
 ```
 
+## コメント規約
+
+### 基本方針: コメントは最小限に
+
+**コードは自己文書化されているべき**。不要なコメントは書かない。
+
+#### ❌ 禁止されるコメント
+
+```typescript
+// ❌ Bad: コードを説明するだけのコメント
+// プロジェクトカードを返す
+export const ProjectCard = ({ title }: ProjectCardProps) => {
+  return <div>{title}</div>;
+};
+
+// ❌ Bad: 変数名を繰り返すだけ
+// タイトル
+const title = project.title;
+
+// ❌ Bad: 何をするか分からないコメント
+// 処理
+const result = processData(data);
+```
+
+#### ✅ 許可されるコメント
+
+コメントには**必ずプレフィックス**をつけ、明確な意図を示す。
+
+##### 1. TODO（要実装・修正）
+GitHubのissueリンク付きで記載する。
+
+```typescript
+// TODO: カテゴリフィルタ機能を実装 (https://github.com/user/repo/issues/123)
+export const ProjectList = () => {
+  // ...
+};
+```
+
+##### 2. NOTE（補足説明）
+非自明なロジックや、なぜそうしたかの理由を説明。
+
+```typescript
+// NOTE: microCMSのリッチエディタはHTMLを返すため、dangerouslySetInnerHTMLを使用
+<div dangerouslySetInnerHTML={{ __html: project.description }} />
+
+// NOTE: Next.js 15ではfetchのキャッシュがデフォルトで無効化されているため、
+//       ISRを使う場合は明示的にrevalidateを指定する必要がある
+export const revalidate = 3600;
+```
+
+##### 3. FIXME（既知のバグ）
+一時的な回避策や、既知の問題を明示。
+
+```typescript
+// FIXME: 画像が読み込めない場合のフォールバック処理を追加 (https://github.com/user/repo/issues/789)
+<img src={project.thumbnail.url} alt={project.title} />
+```
+
+##### 4. WARNING（警告）
+削除・変更してはいけない重要な注意事項。
+
+```typescript
+// WARNING: この関数はSSR時にのみ実行される。クライアント側では動作しない
+export const getServerSideData = async () => {
+  // ...
+};
+```
+
+### JSDocコメント
+
+公開API（exportされた関数・型）には**JSDocを推奨**。
+
+```typescript
+/**
+ * プロジェクト一覧を取得
+ * @param queries - microCMSクエリパラメータ
+ * @returns プロジェクト配列
+ * @example
+ * ```typescript
+ * const projects = await getProjects({ limit: 3, orders: '-createdAt' });
+ * ```
+ */
+export const getProjects = async (queries?: MicroCMSQueries) => {
+  // ...
+};
+```
+
+### コメント削除の基準
+
+以下の場合はコメントではなく**コードで表現**する。
+
+| コメント例 | 改善方法 |
+|-----------|---------|
+| `// ユーザー名を取得` | 関数名を`getUserName()`にする |
+| `// データが空の場合` | `if (isEmpty(data))`のようなヘルパー関数を作る |
+| `// ローディング中` | `isLoading`のような変数名にする |
+
+```typescript
+// ❌ Bad
+// データが空かチェック
+if (data.length === 0) {
+  // ...
+}
+
+// ✅ Good
+const isEmpty = data.length === 0;
+if (isEmpty) {
+  // ...
+}
+
+// ✅ Better
+if (isEmpty(data)) {
+  // ...
+}
+```
+
 ## まとめ
 
 ### チェックリスト
@@ -454,3 +570,4 @@ export default ProjectListPage;
 - [ ] セマンティックHTMLを使用している
 - [ ] Props型を明示的に定義している
 - [ ] Tailwind CSSでスタイリングしている
+- [ ] 不要なコメントを書いていない（TODO/NOTE/FIXME等のプレフィックス付きのみ）
