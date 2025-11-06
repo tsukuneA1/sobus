@@ -99,11 +99,9 @@ sobus/
 | status | select | ○ | published/archived |
 | category | select | - | カテゴリ |
 | period | text | ○ | 実施期間 |
-| members | number | - | 参加人数 |
 | heroImage | media | ○ | メイン画像 |
 | description | richEditor | ○ | プロジェクト概要 |
 | gallery | media[] | - | ギャラリー画像 |
-| achievements | textArea | - | 成果 |
 
 #### 2. blog (リスト形式) - ブログ
 **更新頻度**: 週〜月単位
@@ -118,22 +116,7 @@ sobus/
 | content | richEditor | ○ | 本文 |
 | gallery | media[] | - | ギャラリー画像 |
 
-#### 3. site-setting (オブジェクト形式) - サイト設定
-**更新頻度**: 年1回程度
-
-| フィールド | 種別 | 必須 | 説明 |
-|-----------|------|------|------|
-| logo | media | ○ | ロゴ画像 |
-| siteName | text | ○ | サイト名 |
-| heroImage | media | ○ | ヒーロー画像 |
-| heroCopy | text | ○ | キャッチコピー |
-| mission | textArea | ○ | ミッション |
-| vision | textArea | ○ | ビジョン |
-| values | textArea | ○ | バリュー |
-| instagramUrl | text | - | Instagram URL |
-| contactUrl | text | - | 問い合わせURL |
-
-#### 4. gallery (リスト形式) - ギャラリー
+#### 3. gallery (リスト形式) - ギャラリー
 **更新頻度**: 半年〜1年に1回
 
 | フィールド | 種別 | 必須 | 説明 |

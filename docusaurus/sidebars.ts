@@ -36,7 +36,6 @@ const sidebars: SidebarsConfig = {
         'microCMS/index',
         'microCMS/project',
         'microCMS/blog',
-        'microCMS/site-setting',
         'microCMS/gallery',
       ],
     },

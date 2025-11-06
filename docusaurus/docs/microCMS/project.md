@@ -18,11 +18,10 @@ title: 活動実績 API定義
 | `status` | ステータス | select | ○ | 公開状態 (published/archived) |
 | `category` | カテゴリ | select | - | プロジェクト種別 (ビジネスコンテスト/ボランティア活動/講演会/学習会/その他) |
 
-#### 期間・規模
+#### 期間
 | フィールドID | 名前 | 種別 | 必須 | 説明 |
 |------------|------|------|------|------|
 | `period` | 実施期間 | text | ○ | 実施時期 (例: 2024年6月〜8月) |
-| `members` | 参加人数 | number | - | プロジェクト参加人数 |
 
 #### コンテンツ
 | フィールドID | 名前 | 種別 | 必須 | 説明 |
@@ -30,11 +29,6 @@ title: 活動実績 API定義
 | `heroImage` | ヒーロー画像 | media | ○ | プロジェクトのメイン画像 |
 | `description` | プロジェクト概要 | richEditor | ○ | 目的・背景・活動内容の説明 |
 | `gallery` | ギャラリー画像 | media (複数) | - | 追加の活動写真 |
-
-#### 成果（オプション）
-| フィールドID | 名前 | 種別 | 必須 | 説明 |
-|------------|------|------|------|------|
-| `achievements` | 成果 | textArea | - | 成果のフリーテキスト (例: 参加者50名、メディア掲載3件) |
 
 ---
 
@@ -48,7 +42,6 @@ title: 活動実績 API定義
   "status": "published",
   "category": "volunteer",
   "period": "2024年3月〜5月",
-  "members": 15,
   "heroImage": {
     "url": "https://images.microcms-assets.io/.../noto-hero.jpg"
   },
@@ -60,8 +53,7 @@ title: 活動実績 API定義
     {
       "url": "https://images.microcms-assets.io/.../activity-2.jpg"
     }
-  ],
-  "achievements": "ボランティア参加回数: 10回\nメディア掲載: 3件\n支援世帯数: 50世帯"
+  ]
 }
 ```
 

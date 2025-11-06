@@ -23,12 +23,6 @@ sidebar_label: microCMS API 概要
    - トップページのカルーセル用活動写真
    - 順序管理あり
 
-### オブジェクト形式API
-
-4. **[サイト設定 (site-setting)](./site-setting.md)**
-   - サイト全体の設定を一元管理
-   - 例: ロゴ、MVV、SNSリンク
-
 ---
 
 ## 設計方針
@@ -41,4 +35,3 @@ sidebar_label: microCMS API 概要
 ### 更新頻度の考慮
 - 高頻度: blog (週〜月単位)
 - 中頻度: project, gallery (半年〜1年)
-- 低頻度: site-setting (年1回程度)
