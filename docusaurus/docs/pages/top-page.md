@@ -3,7 +3,7 @@ sidebar_label: トップページ
 title: トップページ
 ---
 
-参照デザイン: [Figma](https://www.figma.com/design/YnVHGwlPC3uApYcexZDlen/%E3%82%BD%E3%83%BC%E3%83%93%E3%82%BA%E3%80%80%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3?node-id=5-138&t=s3f3lKF89jaOHeAf-4)
+参照デザイン: [Figma](https://www.figma.com/design/amUGJeLnZNgPDOQX2p4bfQ/%E3%82%BD%E3%83%BC%E3%83%93%E3%82%BA%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%80%80%E6%94%B9%E8%A8%82%E7%89%88?node-id=5-100&m=dev)
 
 ## 1. ページ目的・KPI
 - 対社会人: 団体の活動実態の明確化、信頼感の醸成
