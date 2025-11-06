@@ -1,89 +1,42 @@
-// microCMS共通型
-export interface MicroCMSBase {
+type MicroCMSBase = {
   id: string;
   createdAt: string;
   updatedAt: string;
   publishedAt?: string;
   revisedAt?: string;
-}
+};
 
-// プロジェクト (活動実績)
-export interface Project extends MicroCMSBase {
+type MicroCMSImage = {
+  url: string;
+  height?: number;
+  width?: number;
+};
+
+export type Project = {
   title: string;
-  slug: string;
-  status: 'published' | 'archived';
-  category?: 'business-contest' | 'volunteer' | 'lecture' | 'learning' | 'other';
-  period: string;
-  members?: number;
-  heroImage: {
-    url: string;
-    height?: number;
-    width?: number;
-  };
+  category: string;
+  thumbnail: MicroCMSImage;
   description: string;
-  gallery?: Array<{
-    url: string;
-    height?: number;
-    width?: number;
-  }>;
-  achievements?: string;
-}
+  gallery?: MicroCMSImage[];
+} & MicroCMSBase;
 
-// ブログ
-export interface Blog extends MicroCMSBase {
+export type Blog = {
   title: string;
-  slug: string;
-  status: 'published' | 'draft';
-  category?: 'business-contest' | 'volunteer' | 'lecture' | 'learning' | 'event' | 'daily' | 'other';
-  thumbnail: {
-    url: string;
-    height?: number;
-    width?: number;
-  };
+  category?: string;
+  thumbnail: MicroCMSImage;
   content: string;
-  gallery?: Array<{
-    url: string;
-    height?: number;
-    width?: number;
-  }>;
-}
+  gallery?: MicroCMSImage[];
+} & MicroCMSBase;
 
-// サイト設定
-export interface SiteSetting {
-  logo: {
-    url: string;
-    height?: number;
-    width?: number;
-  };
-  siteName: string;
-  heroImage: {
-    url: string;
-    height?: number;
-    width?: number;
-  };
-  heroCopy: string;
-  mission: string;
-  vision: string;
-  values: string;
-  instagramUrl?: string;
-  contactUrl?: string;
-}
-
-// ギャラリー
-export interface Gallery extends MicroCMSBase {
-  image: {
-    url: string;
-    height?: number;
-    width?: number;
-  };
+export type Gallery = {
+  image: MicroCMSImage;
   caption?: string;
   order: number;
-}
+} & MicroCMSBase;
 
-// microCMS APIレスポンス型
-export interface MicroCMSListResponse<T> {
+export type MicroCMSListResponse<T> = {
   contents: T[];
   totalCount: number;
   offset: number;
   limit: number;
-}
+};
