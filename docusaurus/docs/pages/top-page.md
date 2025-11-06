@@ -20,8 +20,6 @@ title: トップページ
 7. 年間スケジュール(要編集性)
 8. フッター: ロゴ、SNSリンク(Instagram DM等)
 
-要件出典: `docs/requirements.md`, `docs/FAQ.md`
-
 ## 3. UIセクション別 実装方針
 
 ### 3.1 ヒーロー
