@@ -356,16 +356,80 @@ app/src/
 - **基本**: Tailwind CSSでスタイリング
 - **カスタムCSS**: 極力避け、Tailwindのユーティリティクラスで対応
 
+#### カスタムカラーの使用（必須）
+
+`globals.css`で定義されたカスタムカラーを**必ず使用**すること。
+
+**現在定義されているカラー**:
+- `primary`: `#EB8338` - ブランドカラー（オレンジ）
+- `secondary`: `#F7F1D4` - セカンダリカラー（ベージュ）
+
 ```typescript
-// ✅ Good: Tailwind CSS
+// ✅ Good: カスタムカラーを使用
 export const Card = ({ title }: CardProps) => {
   return (
-    <div className="rounded-lg border p-4 shadow-sm">
+    <div className="bg-primary text-primary-foreground rounded-lg p-4">
       <h3 className="text-lg font-bold">{title}</h3>
     </div>
   );
 };
+
+export const Button = ({ children }: ButtonProps) => {
+  return (
+    <button className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
+      {children}
+    </button>
+  );
+};
 ```
+
+```typescript
+// ❌ Bad: ハードコードされたカラー
+export const Card = ({ title }: CardProps) => {
+  return (
+    <div className="bg-orange-500 text-white rounded-lg p-4">
+      <h3 className="text-lg font-bold">{title}</h3>
+    </div>
+  );
+};
+
+// ❌ Bad: HEXコードを直接使用
+export const Button = ({ children }: ButtonProps) => {
+  return (
+    <button style={{ backgroundColor: '#EB8338' }}>
+      {children}
+    </button>
+  );
+};
+```
+
+#### カラー使用ガイドライン
+
+| 用途 | 使用するカラー | クラス例 |
+|-----|--------------|---------|
+| メインアクション（CTA） | `primary` | `bg-primary text-primary-foreground` |
+| 背景・補助要素 | `secondary` | `bg-secondary text-secondary-foreground` |
+| テキスト | `foreground` | `text-foreground` |
+| 背景 | `background` | `bg-background` |
+| ボーダー | `border` | `border-border` |
+| ミュート | `muted` | `bg-muted text-muted-foreground` |
+
+#### カスタムカラーの確認方法
+
+スタイリング前に必ず`app/src/app/globals.css`の`:root`セクションを確認すること。
+
+```css
+/* app/src/app/globals.css */
+:root {
+  --primary: #EB8338;        /* メインカラー */
+  --secondary: #F7F1D4;      /* セカンダリカラー */
+  --background: oklch(1 0 0); /* 背景色 */
+  --foreground: oklch(0.145 0 0); /* テキスト色 */
+  /* ... */
+}
+```
+
+新しいカラーを追加する場合は、`globals.css`に定義してから使用する。
 
 ```typescript
 // ❌ Bad: インラインスタイル
@@ -570,4 +634,5 @@ if (isEmpty(data)) {
 - [ ] セマンティックHTMLを使用している
 - [ ] Props型を明示的に定義している
 - [ ] Tailwind CSSでスタイリングしている
+- [ ] `globals.css`で定義されたカスタムカラー（primary/secondary等）を使用している
 - [ ] 不要なコメントを書いていない（TODO/NOTE/FIXME等のプレフィックス付きのみ）
