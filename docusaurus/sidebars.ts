@@ -17,6 +17,11 @@ const sidebars: SidebarsConfig = {
     'index',
     {
       type: 'category',
+      label: 'オンボーディング',
+      items: ['onboarding/react'],
+    },
+    {
+      type: 'category',
       label: '要件定義',
       items: ['requirements/requirements', 'requirements/FAQ'],
     },
