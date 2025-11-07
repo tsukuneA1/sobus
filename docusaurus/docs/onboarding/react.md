@@ -413,5 +413,3 @@ Next.js Server Components (サーバーでfetch → HTML返す)
 ```
 
 **宣言的に要件を伝えられる = AIの出力精度が上がる**
-
----
