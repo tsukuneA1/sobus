@@ -1,206 +1,159 @@
-# Claude Code向けプロジェクトガイド
+# CLAUDE.md
 
-このドキュメントは、Claude Codeがこのプロジェクトを理解し、効率的に作業するための情報をまとめたものです。
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## プロジェクト概要
+## Project Overview
 
-### 目的
-早稲田大学のソーシャルビジネスサークル「ソービズ」のWebサイト開発
+早稲田大学ソーシャルビジネスサークル「ソービズ」の公式Webサイト。Next.js 15 + microCMS + Vercelで構成された、学生向け入会導線と社会人向け協賛支援のための二階層構造を持つサイト。
 
-### ターゲットユーザー
-- **学生**: 入会検討中の大学生（活動内容の理解 → 入会導線）
-- **社会人**: 協賛/支援を検討する社会人（団体の信頼性・活動実態の確認）
+## Repository Architecture
 
-### 主要機能
-1. プロジェクト実績の紹介（ビジコン、ボランティア、講演会等）
-2. 日々の活動ブログ（インスタ感覚の投稿）
-3. MVV（Mission/Vision/Value）の表示
-4. 活動写真ギャラリー
-5. 年間スケジュール（Google Calendar連携予定）
-
-## 技術スタック
-
-### フロントエンド
-- **Next.js 15** (App Router) - SSG/ISR対応
-- **TypeScript 5**
-- **React 19**
-- **Tailwind CSS** - スタイリング
-- **shadcn/ui** - UIコンポーネント（Card, Carousel, Dialog, Button）
-
-### CMS
-- **microCMS** - ヘッドレスCMS
-- **@microcms/sdk** - 公式SDK
-
-### ホスティング
-- **Vercel** - Next.js最適化、自動デプロイ
-
-### ドキュメント
-- **Docusaurus 3** - 技術ドキュメント管理
-
-## ディレクトリ構造
+### Monorepo Structure
+このリポジトリは2つの独立したプロジェクトを含むmonorepo構成:
 
 ```
 sobus/
-├── app/                     # Next.js 15 App Router アプリケーション
-│   ├── src/
-│   │   ├── app/            # App Router (pages)
-│   │   │   ├── layout.tsx  # ルートレイアウト
-│   │   │   ├── page.tsx    # トップページ
-│   │   │   └── globals.css # グローバルスタイル
-│   │   ├── components/     # Reactコンポーネント
-│   │   │   └── ui/        # shadcn/uiコンポーネント
-│   │   ├── lib/           # ユーティリティ
-│   │   │   ├── microcms.ts # microCMSクライアント
-│   │   │   └── utils.ts    # ヘルパー関数
-│   │   └── types/         # TypeScript型定義
-│   │       └── microcms.ts # microCMS型定義
-│   ├── public/            # 静的ファイル
-│   ├── .env.local         # 環境変数（gitignore）
-│   ├── .env.example       # 環境変数テンプレート
-│   ├── next.config.ts     # Next.js設定
-│   ├── tsconfig.json      # TypeScript設定
-│   ├── tailwind.config.ts # Tailwind設定
-│   ├── components.json    # shadcn/ui設定
-│   └── package.json
-├── docusaurus/            # 技術ドキュメント（仕様書・設計書）
-│   ├── docs/
-│   │   ├── index.md       # ドキュメントトップ
-│   │   ├── requirements/  # 要件定義
-│   │   ├── pages/         # ページ実装方針
-│   │   ├── microCMS/      # microCMS API定義
-│   │   └── tech-stack.md
-│   └── sidebars.ts
-├── .rulesync/             # AI assistant統一ルール
-│   ├── rules/             # ルールソースファイル
-│   ├── commands/          # カスタムコマンド
-│   └── rulesync.jsonc     # rulesync設定
-├── .agents/               # 生成されたAIルール（gitignore）
-├── AGENTS.md              # 生成されたルールファイル（gitignore）
-├── CLAUDE.md              # 開発ガイド
-└── README.md              # プロジェクトREADME
+├── app/              # Next.js 15 App Router (本体アプリケーション)
+├── docusaurus/       # Docusaurus 3 (技術ドキュメント)
+└── .rulesync/        # AI assistant統一ルール (複数AIツール間で共有)
 ```
 
-## microCMS API設計
+**重要**: `app/`と`docusaurus/`はそれぞれ独立した`node_modules`を持つため、コマンド実行時は必ず対象ディレクトリに移動してから実行すること。
 
-### 設計方針
-- **シンプル性の重視**: 必要最小限のフィールド構成
-- **運用負荷の軽減**: 5〜10分で記事作成可能
-- **段階的拡張**: 必要に応じて後からフィールド追加
+### Data Flow & Architecture
 
-### API一覧
+```
+microCMS (CMS)
+    ↓ REST API
+[app/src/lib/microcms.ts] - microCMSクライアント
+    ↓ Server Component fetch
+[app/src/app/**/page.tsx] - Container Component (データ取得)
+    ↓ props
+[app/src/components/**] - Presentational Component (UI表示)
+```
 
-#### 1. project (リスト形式) - 活動実績
-**更新頻度**: 半年〜1年に1回
+**設計パターン**: Presentational/Container分離
+- **Container** (`app/src/app/`): データ取得・状態管理、デフォルトexport必須
+- **Presentational** (`app/src/components/`): UI表示のみ、名前付きexport
 
-| フィールド | 種別 | 必須 | 説明 |
-|-----------|------|------|------|
-| title | text | ○ | プロジェクト名 |
-| category | select | - | カテゴリ |
-| thumbnail | media | ○ | サムネイル画像 |
-| description | richEditor | ○ | プロジェクト概要 |
-| gallery | media[] | - | ギャラリー画像 |
+### microCMS API Structure
 
-#### 2. blog (リスト形式) - ブログ
-**更新頻度**: 週〜月単位
+microCMSは3つのAPIエンドポイントで構成:
 
-| フィールド | 種別 | 必須 | 説明 |
-|-----------|------|------|------|
-| title | text | ○ | タイトル |
-| category | select | - | カテゴリ |
-| thumbnail | media | ○ | サムネイル画像 |
-| content | richEditor | ○ | 本文 |
-| gallery | media[] | - | ギャラリー画像 |
+| API | エンドポイント | 用途 | 更新頻度 |
+|-----|--------------|------|----------|
+| `projects` | `/api/v1/projects` | 活動実績 (ビジコン、ボランティア等) | 半年〜1年 |
+| `blog` | `/api/v1/blog` | 日々の活動ブログ | 週〜月 |
+| `gallery` | `/api/v1/gallery` | 活動写真ギャラリー | 半年〜1年 |
 
-#### 3. gallery (リスト形式) - ギャラリー
-**更新頻度**: 半年〜1年に1回
+**データ取得パターン**: [app/src/lib/microcms.ts](app/src/lib/microcms.ts) 経由で統一的にアクセス。Server ComponentでSSG/ISR対応。
 
-| フィールド | 種別 | 必須 | 説明 |
-|-----------|------|------|------|
-| image | media | ○ | 活動写真 |
-| caption | text | - | キャプション |
-| order | number | ○ | 表示順序 |
+## Common Commands
 
-## 開発ガイドライン
+### Next.js Development (app/)
+```bash
+cd app
+npm run dev          # 開発サーバー (http://localhost:3000)
+npm run build        # プロダクションビルド (型チェック含む)
+npm run start        # ビルド後のプレビュー
+npm run lint         # ESLint実行
+```
 
-### ドキュメント編集時の注意点
+### Docusaurus (docusaurus/)
+```bash
+cd docusaurus
+npm run start        # 開発サーバー (http://localhost:3001)
+npm run build        # ビルド (リンク切れチェック含む)
+npm run serve        # ビルド後のプレビュー
+```
 
-1. **ファイル命名規則**: 単数形を使用（`project.md`, `blog.md`）
-2. **リンク参照**: 相対パスで記述（例: `../microCMS/project.md`）
-3. **ビルド確認**: 編集後は必ず `npm run build` でビルドエラーがないか確認
+**重要**: ドキュメント編集後は必ず `npm run build` でリンク切れチェックを実行すること。
 
-### microCMS API設計の原則
+### Environment Setup
 
-1. **過度な構造化を避ける**
-   - ❌ 複雑なrepeaterフィールドの乱用
-   - ✅ リッチエディタで自由記述
+```bash
+# 初回セットアップ
+cd app && cp .env.example .env.local
+# .env.local のMICROCMS_SERVICE_DOMAINとMICROCMS_API_KEYを設定
 
-2. **運用者目線で設計**
-   - ❌ SEO専用フィールド（初期段階では不要）
-   - ✅ 基本情報だけで運用可能
+# 依存関係インストール
+cd app && npm install
+cd docusaurus && npm install
+```
 
-3. **拡張性の担保**
-   - 将来的な拡張候補を設計方針セクションに記載
-   - 例: `process` (repeater), `projectMembers` (repeater)
+### rulesync (AI Rules Management)
 
-### ページ実装方針の記述
+このプロジェクトは[rulesync](https://github.com/dyoshikawa/rulesync)で複数AIツール (Claude Code, Cursor, Copilot等) 用のルールを一元管理:
 
-各ページのドキュメントには以下を含める:
-- **ページ目的・KPI**: ターゲットと目的を明確化
-- **情報構成(IA)**: セクション別の内容
-- **セクション別実装方針**: UI/CMS接続の詳細
-- **ルーティング設計**: URL構造
-- **データモデル**: microCMS API定義への参照リンク
-- **取得・描画戦略**: SSG/ISR/キャッシュ戦略
-- **パフォーマンス・SEO**: 最適化方針
+```bash
+rulesync generate    # .rulesync/rules/ → AGENTS.md/.claude/等を生成
+```
 
-## よくある作業パターン
+**Note**: `.rulesync/rules/`を編集後は`rulesync generate`で各AIツール用ファイルを再生成する必要がある。
 
-### 新しいAPI定義を追加する場合
+## Key Technical Decisions
 
-1. `docusaurus/docs/microCMS/` に新しい `.md` ファイルを作成
-2. 以下のテンプレートを使用:
-   ```markdown
-   ---
-   sidebar_label: [API名] API定義
-   title: [API名] API定義
-   ---
+### Next.js 15 Rendering Strategy
+- **デフォルト**: Server Components (すべてのコンポーネントはサーバーサイド)
+- **クライアント化**: `'use client'`は onClick/useState等のインタラクション時のみ
+- **ISR**: `export const revalidate = 3600` でページごとにキャッシュ戦略を設定
 
-   ## 概要
-   - **API ID**: `[api-id]`
-   - **API種別**: リスト形式 or オブジェクト形式
-   - **用途**: [用途の説明]
+### Styling System
+- **Tailwind CSS 4** with custom color tokens
+- **必須**: `globals.css`定義のカスタムカラー (`primary: #EB8338`, `secondary: #F7F1D4`) を使用
+- **shadcn/ui**: UIコンポーネントライブラリ ([components.json](app/components.json)で設定)
 
-   ## フィールド構成
-   [フィールド定義テーブル]
+### Type Safety
+- **TypeScript 5**: 厳格な型チェック
+- **microCMS型定義**: [app/src/types/microcms.ts](app/src/types/microcms.ts) で一元管理
+- **Props型**: `type ComponentProps = { ... }` で各コンポーネントに定義
 
-   ## データ例
-   [JSON例]
+## Documentation Structure
 
-   ## 主要クエリパターン
-   [クエリ例]
+技術仕様は`docusaurus/docs/`に体系化されている:
 
-   ## 設計方針
-   [設計の意図・理由]
-   ```
-3. `docusaurus/sidebars.ts` の `microCMS設計` セクションに追加
-4. `docusaurus/docs/microCMS/index.md` のAPI一覧に追加
-5. ビルド確認: `npm run build`
+```
+docusaurus/docs/
+├── requirements/       # 要件定義・FAQ
+├── pages/             # ページ実装方針 (IA, データフェッチ戦略)
+└── microCMS/          # microCMS API定義 (フィールド構成, クエリ例)
+```
 
-### ページ仕様を追加する場合
+**重要な参照先**:
+- API設計詳細: [docusaurus/docs/microCMS/](docusaurus/docs/microCMS/)
+- ページ実装方針: [docusaurus/docs/pages/](docusaurus/docs/pages/)
+- FAQ: [docusaurus/docs/requirements/FAQ.md](docusaurus/docs/requirements/FAQ.md)
 
-1. `docusaurus/docs/pages/` に新しい `.md` ファイルを作成
-2. テンプレートに従って記述（既存ファイルを参考）
-3. `docusaurus/sidebars.ts` の `ページ実装方針` セクションに追加
-4. ビルド確認
+## Coding Standards
 
-## 参考リンク
+**詳細は`.rulesync/rules/01-frontend-development.md`参照**。主要ルール:
 
-- **Figmaデザイン**: https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/
-- **ヒアリングシート**: [Google Spreadsheet]
-- **Instagram参考**: https://www.instagram.com/wavoc_social_business_/
+1. **Component Pattern**: Presentational (名前付きexport) / Container (デフォルトexport) 分離
+2. **Function Syntax**: アロー関数で統一 (`export const Component = () => {}`)
+3. **Server/Client**: デフォルトはServer Component、インタラクション時のみ`'use client'`
+4. **Comments**: 最小限に。TODO/NOTE/FIXME等のプレフィックス必須
+5. **DRY**: 重複コード禁止、積極的に共通化
+6. **Semantic HTML**: `<header>`, `<article>`, `<nav>`等を適切に使用
 
-## 連絡先・質問
+## Working with Documents
 
-プロジェクトに関する質問や不明点がある場合は、以下を確認してください:
-1. `docusaurus/docs/requirements/FAQ.md` - クライアントからのFAQ
-2. `docusaurus/docs/requirements/requirements.md` - 初期要件定義
+### Adding New microCMS API Definition
+
+1. Create `docusaurus/docs/microCMS/[api-name].md`
+2. Use template structure (概要, フィールド構成, データ例, クエリパターン, 設計方針)
+3. Update `docusaurus/sidebars.ts` (microCMS設計 section)
+4. Update `docusaurus/docs/microCMS/index.md` (API一覧)
+5. Verify: `cd docusaurus && npm run build`
+
+### Adding New Page Specification
+
+1. Create `docusaurus/docs/pages/[page-name].md`
+2. Include: ページ目的, 情報構成(IA), セクション別実装方針, ルーティング設計, データモデル, 取得・描画戦略
+3. Update `docusaurus/sidebars.ts` (ページ実装方針 section)
+4. Verify: `cd docusaurus && npm run build`
+
+## External Resources
+
+- **Figma Design**: https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/
+- **Deployed Docs**: https://sobus-docusaurus.vercel.app/
+- **Instagram Reference**: https://www.instagram.com/wavoc_social_business_/
