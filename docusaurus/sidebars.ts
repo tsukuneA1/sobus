@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'オンボーディング',
-      items: ['onboarding/react'],
+      items: ['onboarding/react', 'onboarding/component-design'],
     },
     {
       type: 'category',
