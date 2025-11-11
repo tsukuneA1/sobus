@@ -622,6 +622,102 @@ if (isEmpty(data)) {
 }
 ```
 
+## コードフォーマット・Lint
+
+### Biome設定
+
+このプロジェクトでは**Biome**をフォーマッター・リンターとして使用（Prettier/ESLint代替）。
+
+**設定ファイル**: `app/biome.json`
+
+```json
+{
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  }
+}
+```
+
+**コマンド**:
+```bash
+npm run format  # コードフォーマット
+npm run check   # フォーマット + Lint + 自動修正
+```
+
+**重要**: `globals.css`はBiomeの対象外（`files.ignore`に追加済み）
+
+## 静的アセット管理
+
+### assetsディレクトリ構成
+
+SVGやロゴなどの静的アセットは`src/assets/`に配置:
+
+```
+src/assets/
+├── logo/
+│   ├── social-business-logo.svg  # メインロゴ
+│   └── footer-logo.svg           # フッターロゴ
+└── guide-button/
+    └── next.svg                  # UIアイコン
+```
+
+### SVG画像の使用方法
+
+**Next.js Imageコンポーネント経由で読み込む**（SVGRは未設定のため）:
+
+```typescript
+import Image from "next/image";
+import LogoSvg from "@/assets/logo/social-business-logo.svg";
+
+export const Header = () => {
+  return (
+    <Image
+      src={LogoSvg}
+      alt="ソービズロゴ"
+      width={182}
+      height={48}
+      className="h-12 w-auto"
+      priority
+    />
+  );
+};
+```
+
+**注意点**:
+- SVGは直接Reactコンポーネントとして使用不可（SVGRが未設定）
+- 必ず`width`と`height`を指定
+- `priority`属性でロゴなど重要画像の優先読み込み
+
+### microCMS画像の設定
+
+外部画像（microCMS）を使用する場合、`next.config.ts`に許可設定が必要:
+
+```typescript
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.microcms-assets.io",
+      },
+    ],
+  },
+};
+```
+
 ## まとめ
 
 ### チェックリスト
@@ -636,3 +732,5 @@ if (isEmpty(data)) {
 - [ ] Tailwind CSSでスタイリングしている
 - [ ] `globals.css`で定義されたカスタムカラー（primary/secondary等）を使用している
 - [ ] 不要なコメントを書いていない（TODO/NOTE/FIXME等のプレフィックス付きのみ）
+- [ ] コミット前に`npm run check`でフォーマット・Lintを実行
+- [ ] SVG画像はNext.js Imageコンポーネント経由で使用（width/height必須）

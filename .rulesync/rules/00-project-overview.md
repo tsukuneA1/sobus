@@ -28,8 +28,9 @@ globs: ["*"]
 - **Next.js 15** (App Router) - SSG/ISR対応
 - **TypeScript 5** - 型安全性
 - **React 19** - UIライブラリ
-- **Tailwind CSS** - ユーティリティファーストCSS
+- **Tailwind CSS 4** - ユーティリティファーストCSS
 - **shadcn/ui** - UIコンポーネント（Card, Carousel, Dialog, Button）
+- **Biome** - フォーマッター & リンター（Prettier/ESLint代替）
 
 ### CMS
 - **microCMS** - ヘッドレスCMS、REST API提供
@@ -51,6 +52,9 @@ sobus/
 │   │   │   ├── layout.tsx  # ルートレイアウト
 │   │   │   ├── page.tsx    # トップページ
 │   │   │   └── globals.css # グローバルスタイル
+│   │   ├── assets/         # 静的アセット（SVG, 画像等）
+│   │   │   ├── logo/      # ロゴファイル
+│   │   │   └── guide-button/ # UIアイコン
 │   │   ├── components/     # Reactコンポーネント
 │   │   │   └── ui/        # shadcn/uiコンポーネント
 │   │   ├── lib/           # ユーティリティ
@@ -59,6 +63,7 @@ sobus/
 │   │   └── types/         # TypeScript型定義
 │   │       └── microcms.ts # microCMS型定義
 │   ├── public/            # 静的ファイル
+│   ├── biome.json         # Biome設定
 │   ├── .env.local         # 環境変数（gitignore）
 │   ├── .env.example       # 環境変数テンプレート
 │   └── package.json
