@@ -1,19 +1,24 @@
 import { getProjects } from "@/lib/microcms";
+import { ProjectOverviewCard } from "./_components/project-overview-card";
 
 const Page = async () => {
   const projects = await getProjects();
 
   return (
     <div>
-      <h1>活動実績</h1>
       <div>
-        {projects.map((project) => (
-          <div key={project.title}>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
-          </div>
-        ))}
+        <h1>活動実績</h1>
+
+        <div>
+          {projects.map((project) => (
+            <ProjectOverviewCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
+
+      <aside>
+        <h2>月別アーカイブ</h2>
+      </aside>
     </div>
   );
 };
