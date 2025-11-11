@@ -71,5 +71,15 @@ npm run serve      # ビルド後のプレビュー
 
 ### rulesync
 ```bash
-rulesync generate  # AIツール用ルールファイルを生成
+# 設定ファイル通りに生成（rulesync.jsonc参照）
+npx rulesync generate
+
+# 特定ツールのみ生成（推奨）
+npx rulesync generate --targets "claudecode,cursor,copilot"
+
+# 1つだけ生成
+npx rulesync generate --targets "claudecode"
+
+# 全ツール生成（17種類）
+npx rulesync generate --targets "*"
 ```

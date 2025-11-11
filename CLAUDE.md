@@ -1,159 +1,123 @@
-# CLAUDE.md
+Please also reference the following documents as needed:
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+@.claude/memories/01-frontend-development.md description: "Frontend development standards for Next.js App Router" globs: "**/app/**,**/src/**"
+# ソービズ Webサイトプロジェクト
 
-## Project Overview
+## プロジェクト概要
 
-早稲田大学ソーシャルビジネスサークル「ソービズ」の公式Webサイト。Next.js 15 + microCMS + Vercelで構成された、学生向け入会導線と社会人向け協賛支援のための二階層構造を持つサイト。
+早稲田大学のソーシャルビジネスサークル「ソービズ」のWebサイト開発プロジェクトです。
 
-## Repository Architecture
+### ターゲットユーザー
+- **学生**: 入会検討中の大学生（活動内容の理解 → 入会導線）
+- **社会人**: 協賛/支援を検討する社会人（団体の信頼性・活動実態の確認）
 
-### Monorepo Structure
-このリポジトリは2つの独立したプロジェクトを含むmonorepo構成:
+### 主要機能
+1. プロジェクト実績の紹介（ビジコン、ボランティア、講演会等）
+2. 日々の活動ブログ（インスタ感覚の投稿）
+3. MVV（Mission/Vision/Value）の表示
+4. 活動写真ギャラリー
+5. 年間スケジュール（Google Calendar連携予定）
+
+## 技術スタック
+
+### フロントエンド
+- **Next.js 15** (App Router) - SSG/ISR対応
+- **TypeScript 5** - 型安全性
+- **React 19** - UIライブラリ
+- **Tailwind CSS 4** - ユーティリティファーストCSS
+- **shadcn/ui** - UIコンポーネント（Card, Carousel, Dialog, Button）
+- **Biome** - フォーマッター & リンター（Prettier/ESLint代替）
+
+### CMS
+- **microCMS** - ヘッドレスCMS、REST API提供
+- **@microcms/sdk** - 公式TypeScript SDK
+
+### ホスティング
+- **Vercel** - Next.js最適化、自動デプロイ、エッジCDN
+
+### ドキュメント
+- **Docusaurus 3** - 技術ドキュメント管理（`/docusaurus`）
+
+## ディレクトリ構造
 
 ```
 sobus/
-├── app/              # Next.js 15 App Router (本体アプリケーション)
-├── docusaurus/       # Docusaurus 3 (技術ドキュメント)
-└── .rulesync/        # AI assistant統一ルール (複数AIツール間で共有)
+├── app/                     # Next.js 15 App Router アプリケーション
+│   ├── src/
+│   │   ├── app/            # App Router (pages)
+│   │   │   ├── layout.tsx  # ルートレイアウト
+│   │   │   ├── page.tsx    # トップページ
+│   │   │   └── globals.css # グローバルスタイル
+│   │   ├── assets/         # 静的アセット（SVG, 画像等）
+│   │   │   ├── logo/      # ロゴファイル
+│   │   │   └── guide-button/ # UIアイコン
+│   │   ├── components/     # Reactコンポーネント
+│   │   │   └── ui/        # shadcn/uiコンポーネント
+│   │   ├── lib/           # ユーティリティ
+│   │   │   ├── microcms.ts # microCMSクライアント
+│   │   │   └── utils.ts    # ヘルパー関数
+│   │   └── types/         # TypeScript型定義
+│   │       └── microcms.ts # microCMS型定義
+│   ├── public/            # 静的ファイル
+│   ├── biome.json         # Biome設定
+│   ├── .env.local         # 環境変数（gitignore）
+│   ├── .env.example       # 環境変数テンプレート
+│   └── package.json
+├── docusaurus/            # 技術ドキュメント（仕様書・設計書）
+│   ├── docs/
+│   │   ├── requirements/  # 要件定義
+│   │   ├── pages/         # ページ実装方針
+│   │   ├── microCMS/      # microCMS API定義
+│   │   └── tech-stack.md
+│   └── sidebars.ts
+├── .rulesync/             # AI assistant統一ルール
+│   ├── rules/
+│   └── commands/
+├── CLAUDE.md              # 開発ガイド
+└── README.md
 ```
 
-**重要**: `app/`と`docusaurus/`はそれぞれ独立した`node_modules`を持つため、コマンド実行時は必ず対象ディレクトリに移動してから実行すること。
+## Next.js App Router構成
 
-### Data Flow & Architecture
+### ページルーティング
+- `app/src/app/page.tsx` - トップページ (`/`)
+- `app/src/app/project/page.tsx` - プロジェクト一覧 (`/project`)
+- `app/src/app/project/[slug]/page.tsx` - プロジェクト詳細 (`/project/noto-volunteer-2024`)
+- `app/src/app/blog/page.tsx` - ブログ一覧 (`/blog`)
+- `app/src/app/blog/[slug]/page.tsx` - ブログ詳細 (`/blog/spring-orientation-2024`)
 
-```
-microCMS (CMS)
-    ↓ REST API
-[app/src/lib/microcms.ts] - microCMSクライアント
-    ↓ Server Component fetch
-[app/src/app/**/page.tsx] - Container Component (データ取得)
-    ↓ props
-[app/src/components/**] - Presentational Component (UI表示)
-```
+### レイアウト
+- `app/src/app/layout.tsx` - ルートレイアウト（全ページ共通）
+- `app/src/app/project/layout.tsx` - プロジェクトセクション共通レイアウト（必要に応じて）
 
-**設計パターン**: Presentational/Container分離
-- **Container** (`app/src/app/`): データ取得・状態管理、デフォルトexport必須
-- **Presentational** (`app/src/components/`): UI表示のみ、名前付きexport
+### コンポーネント配置
+- `app/src/components/ui/` - shadcn/uiコンポーネント（Button, Card等）
+- `app/src/components/` - カスタムコンポーネント（Header, Footer, ProjectCard等）
 
-### microCMS API Structure
+### データフェッチ
+- `app/src/lib/microcms.ts` - microCMSクライアントの初期化
+- Server Componentで直接データフェッチ（async/await）
+- ISR対応（revalidate設定）
 
-microCMSは3つのAPIエンドポイントで構成:
+## 開発方針
 
-| API | エンドポイント | 用途 | 更新頻度 |
-|-----|--------------|------|----------|
-| `projects` | `/api/v1/projects` | 活動実績 (ビジコン、ボランティア等) | 半年〜1年 |
-| `blog` | `/api/v1/blog` | 日々の活動ブログ | 週〜月 |
-| `gallery` | `/api/v1/gallery` | 活動写真ギャラリー | 半年〜1年 |
+### パフォーマンス重視
+- SSG/ISR による高速ページ生成
+- CDNによる画像配信最適化
+- クリティカルCSSの最適化
 
-**データ取得パターン**: [app/src/lib/microcms.ts](app/src/lib/microcms.ts) 経由で統一的にアクセス。Server ComponentでSSG/ISR対応。
+### 運用負荷の軽減
+- microCMSで非エンジニアでも編集可能
+- シンプルなAPI設計（5〜10分で記事作成可能）
+- 段階的な機能拡張
 
-## Common Commands
+### SEO対策
+- 適切なメタタグ・OGP設定
+- 構造化データ（Schema.org）
+- Next.js の自動最適化機能活用
 
-### Next.js Development (app/)
-```bash
-cd app
-npm run dev          # 開発サーバー (http://localhost:3000)
-npm run build        # プロダクションビルド (型チェック含む)
-npm run start        # ビルド後のプレビュー
-npm run lint         # ESLint実行
-```
+## 参考リンク
 
-### Docusaurus (docusaurus/)
-```bash
-cd docusaurus
-npm run start        # 開発サーバー (http://localhost:3001)
-npm run build        # ビルド (リンク切れチェック含む)
-npm run serve        # ビルド後のプレビュー
-```
-
-**重要**: ドキュメント編集後は必ず `npm run build` でリンク切れチェックを実行すること。
-
-### Environment Setup
-
-```bash
-# 初回セットアップ
-cd app && cp .env.example .env.local
-# .env.local のMICROCMS_SERVICE_DOMAINとMICROCMS_API_KEYを設定
-
-# 依存関係インストール
-cd app && npm install
-cd docusaurus && npm install
-```
-
-### rulesync (AI Rules Management)
-
-このプロジェクトは[rulesync](https://github.com/dyoshikawa/rulesync)で複数AIツール (Claude Code, Cursor, Copilot等) 用のルールを一元管理:
-
-```bash
-rulesync generate    # .rulesync/rules/ → AGENTS.md/.claude/等を生成
-```
-
-**Note**: `.rulesync/rules/`を編集後は`rulesync generate`で各AIツール用ファイルを再生成する必要がある。
-
-## Key Technical Decisions
-
-### Next.js 15 Rendering Strategy
-- **デフォルト**: Server Components (すべてのコンポーネントはサーバーサイド)
-- **クライアント化**: `'use client'`は onClick/useState等のインタラクション時のみ
-- **ISR**: `export const revalidate = 3600` でページごとにキャッシュ戦略を設定
-
-### Styling System
-- **Tailwind CSS 4** with custom color tokens
-- **必須**: `globals.css`定義のカスタムカラー (`primary: #EB8338`, `secondary: #F7F1D4`) を使用
-- **shadcn/ui**: UIコンポーネントライブラリ ([components.json](app/components.json)で設定)
-
-### Type Safety
-- **TypeScript 5**: 厳格な型チェック
-- **microCMS型定義**: [app/src/types/microcms.ts](app/src/types/microcms.ts) で一元管理
-- **Props型**: `type ComponentProps = { ... }` で各コンポーネントに定義
-
-## Documentation Structure
-
-技術仕様は`docusaurus/docs/`に体系化されている:
-
-```
-docusaurus/docs/
-├── requirements/       # 要件定義・FAQ
-├── pages/             # ページ実装方針 (IA, データフェッチ戦略)
-└── microCMS/          # microCMS API定義 (フィールド構成, クエリ例)
-```
-
-**重要な参照先**:
-- API設計詳細: [docusaurus/docs/microCMS/](docusaurus/docs/microCMS/)
-- ページ実装方針: [docusaurus/docs/pages/](docusaurus/docs/pages/)
-- FAQ: [docusaurus/docs/requirements/FAQ.md](docusaurus/docs/requirements/FAQ.md)
-
-## Coding Standards
-
-**詳細は`.rulesync/rules/01-frontend-development.md`参照**。主要ルール:
-
-1. **Component Pattern**: Presentational (名前付きexport) / Container (デフォルトexport) 分離
-2. **Function Syntax**: アロー関数で統一 (`export const Component = () => {}`)
-3. **Server/Client**: デフォルトはServer Component、インタラクション時のみ`'use client'`
-4. **Comments**: 最小限に。TODO/NOTE/FIXME等のプレフィックス必須
-5. **DRY**: 重複コード禁止、積極的に共通化
-6. **Semantic HTML**: `<header>`, `<article>`, `<nav>`等を適切に使用
-
-## Working with Documents
-
-### Adding New microCMS API Definition
-
-1. Create `docusaurus/docs/microCMS/[api-name].md`
-2. Use template structure (概要, フィールド構成, データ例, クエリパターン, 設計方針)
-3. Update `docusaurus/sidebars.ts` (microCMS設計 section)
-4. Update `docusaurus/docs/microCMS/index.md` (API一覧)
-5. Verify: `cd docusaurus && npm run build`
-
-### Adding New Page Specification
-
-1. Create `docusaurus/docs/pages/[page-name].md`
-2. Include: ページ目的, 情報構成(IA), セクション別実装方針, ルーティング設計, データモデル, 取得・描画戦略
-3. Update `docusaurus/sidebars.ts` (ページ実装方針 section)
-4. Verify: `cd docusaurus && npm run build`
-
-## External Resources
-
-- **Figma Design**: https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/
-- **Deployed Docs**: https://sobus-docusaurus.vercel.app/
-- **Instagram Reference**: https://www.instagram.com/wavoc_social_business_/
+- **Figmaデザイン**: https://www.figma.com/design/SueA7I2vCsatvIf0s7BgB7/
+- **Instagram参考**: https://www.instagram.com/wavoc_social_business_/
+- **技術ドキュメント**: `/docusaurus/docs/`
