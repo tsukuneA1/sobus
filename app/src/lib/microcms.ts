@@ -1,13 +1,18 @@
-import { createClient } from 'microcms-js-sdk';
-import type { MicroCMSQueries } from 'microcms-js-sdk';
-import type { Project, Blog, Gallery, MicroCMSListResponse } from '@/types/microcms';
+import type { MicroCMSQueries } from "microcms-js-sdk";
+import { createClient } from "microcms-js-sdk";
+import type {
+  Blog,
+  Gallery,
+  MicroCMSListResponse,
+  Project,
+} from "@/types/microcms";
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
-  throw new Error('MICROCMS_SERVICE_DOMAIN is required');
+  throw new Error("MICROCMS_SERVICE_DOMAIN is required");
 }
 
 if (!process.env.MICROCMS_API_KEY) {
-  throw new Error('MICROCMS_API_KEY is required');
+  throw new Error("MICROCMS_API_KEY is required");
 }
 
 // microCMSクライアント
@@ -27,7 +32,7 @@ export const client = createClient({
  */
 export const getProjects = async (queries?: MicroCMSQueries) => {
   const data = await client.get<MicroCMSListResponse<Project>>({
-    endpoint: 'projects',
+    endpoint: "projects",
     queries,
   });
   return data.contents;
@@ -40,7 +45,7 @@ export const getProjects = async (queries?: MicroCMSQueries) => {
  */
 export const getProjectById = async (contentId: string) => {
   return await client.get<Project>({
-    endpoint: 'projects',
+    endpoint: "projects",
     contentId,
   });
 };
@@ -56,7 +61,7 @@ export const getProjectById = async (contentId: string) => {
  */
 export const getBlogs = async (queries?: MicroCMSQueries) => {
   const data = await client.get<MicroCMSListResponse<Blog>>({
-    endpoint: 'blog',
+    endpoint: "blog",
     queries,
   });
   return data.contents;
@@ -69,7 +74,7 @@ export const getBlogs = async (queries?: MicroCMSQueries) => {
  */
 export const getBlogById = async (contentId: string) => {
   return await client.get<Blog>({
-    endpoint: 'blog',
+    endpoint: "blog",
     contentId,
   });
 };
@@ -84,8 +89,8 @@ export const getBlogById = async (contentId: string) => {
  */
 export const getGallery = async () => {
   const data = await client.get<MicroCMSListResponse<Gallery>>({
-    endpoint: 'gallery',
-    queries: { orders: 'order' },
+    endpoint: "gallery",
+    queries: { orders: "order" },
   });
   return data.contents;
 };

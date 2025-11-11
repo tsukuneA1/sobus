@@ -5,15 +5,15 @@ const Page = async () => {
 
   return (
     <div>
-        <h1>活動実績</h1>
-        <div>
-            {projects.map((project) => (
-                <div key={project.title}>
-                    <h2>{project.title}</h2>
-                    <p>{project.description}</p>
-                </div>
-            ))}
-        </div>
+      <h1>活動実績</h1>
+      <div>
+        {projects.map((project) => (
+          <div key={project.title}>
+            <h2>{project.title}</h2>
+            <p>{project.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
