@@ -24,11 +24,11 @@ const Page = async ({ params }: PageProps) => {
         <div>
           <h2>ギャラリー</h2>
           <div>
-            {project.gallery.map((image, index) => (
+            {project.gallery.map((image) => (
               <Image
-                key={index}
+                key={project.id}
                 src={image.url}
-                alt={`${project.title} - ${index + 1}`}
+                alt={project.title}
                 width={image.width || 400}
                 height={image.height || 300}
               />
