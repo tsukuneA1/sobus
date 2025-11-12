@@ -51,13 +51,14 @@ coverage/
 .amazonq/
 .augment/
 .augment-guidelines
-.claude/memories/
+.claude/
 .clinerules
 .codex/
 .cursor/
 .gemini/
 .github/copilot-instructions.md
 .github/instructions/
+.github/prompts/
 .junie/
 .kiro/
 .opencode/

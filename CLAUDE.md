@@ -21,11 +21,10 @@ Please also reference the following documents as needed:
 ## 技術スタック
 
 ### フロントエンド
-- **Next.js 15** (App Router) - SSG/ISR対応
+- **Next.js 16** (App Router) - SSG/ISR対応
 - **TypeScript 5** - 型安全性
 - **React 19** - UIライブラリ
 - **Tailwind CSS 4** - ユーティリティファーストCSS
-- **shadcn/ui** - UIコンポーネント（Card, Carousel, Dialog, Button）
 - **Biome** - フォーマッター & リンター（Prettier/ESLint代替）
 
 ### CMS
@@ -42,7 +41,7 @@ Please also reference the following documents as needed:
 
 ```
 sobus/
-├── app/                     # Next.js 15 App Router アプリケーション
+├── app/                     # Next.js 16 App Router アプリケーション
 │   ├── src/
 │   │   ├── app/            # App Router (pages)
 │   │   │   ├── layout.tsx  # ルートレイアウト
@@ -52,7 +51,6 @@ sobus/
 │   │   │   ├── logo/      # ロゴファイル
 │   │   │   └── guide-button/ # UIアイコン
 │   │   ├── components/     # Reactコンポーネント
-│   │   │   └── ui/        # shadcn/uiコンポーネント
 │   │   ├── lib/           # ユーティリティ
 │   │   │   ├── microcms.ts # microCMSクライアント
 │   │   │   └── utils.ts    # ヘルパー関数
@@ -91,7 +89,6 @@ sobus/
 - `app/src/app/project/layout.tsx` - プロジェクトセクション共通レイアウト（必要に応じて）
 
 ### コンポーネント配置
-- `app/src/components/ui/` - shadcn/uiコンポーネント（Button, Card等）
 - `app/src/components/` - カスタムコンポーネント（Header, Footer, ProjectCard等）
 
 ### データフェッチ

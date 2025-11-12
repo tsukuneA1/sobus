@@ -22,10 +22,10 @@ sobus/
 
 ## 技術スタック
 
-- **Next.js 15** (App Router) - フレームワーク
+- **Next.js 16** (App Router) - フレームワーク
 - **TypeScript 5** - 型安全性
-- **Tailwind CSS** - スタイリング
-- **shadcn/ui** - UIコンポーネント
+- **Tailwind CSS 4** - スタイリング
+- **Biome** - フォーマッター & リンター
 - **microCMS** - ヘッドレスCMS
 - **Vercel** - ホスティング
 
@@ -71,15 +71,12 @@ npm run serve      # ビルド後のプレビュー
 
 ### rulesync
 ```bash
-# 設定ファイル通りに生成（rulesync.jsonc参照）
-npx rulesync generate
+# ルールのみ生成
+npx rulesync generate --targets "claudecode,cursor,copilot" --features "rules"
 
-# 特定ツールのみ生成（推奨）
-npx rulesync generate --targets "claudecode,cursor,copilot"
-
-# 1つだけ生成
-npx rulesync generate --targets "claudecode"
+# ルール + コマンド生成（推奨）
+npx rulesync generate --targets "claudecode,cursor,copilot" --features "rules,commands" --simulated-commands
 
 # 全ツール生成（17種類）
-npx rulesync generate --targets "*"
+npx rulesync generate --targets "*" --features "rules,commands" --simulated-commands
 ```
