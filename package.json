@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "app"
+    "app",
+    "docusaurus"
   ],
   "scripts": {
     "prepare": "husky || true"
