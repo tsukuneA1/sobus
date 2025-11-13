@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+# Get current branch name
+BRANCH=$(git symbolic-ref --short HEAD)
+
+# Check if branch is main
+if [ "$BRANCH" = "main" ]; then
+  echo "❌ Error: Cannot commit directly to main branch"
+  echo "Please create a feature branch and commit there"
+  exit 1
+fi
+
+# Run format check
+echo "🔍 Running format check..."
+cd app && npm run format
+if [ $? -ne 0 ]; then
+  echo "❌ Format check failed"
+  exit 1
+fi
+
+# Run biome check
+echo "🔍 Running biome check..."
+npm run check
+if [ $? -ne 0 ]; then
+  echo "❌ Biome check failed"
+  exit 1
+fi
+
+echo "✅ All checks passed!"
