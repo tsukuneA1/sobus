@@ -30,7 +30,7 @@ export const Header = () => {
             Instagram
           </Link>
           <Link
-            href="https://x.com/"
+            href="https://x.com/wavoc_sbp"
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg font-bold text-foreground hover:opacity-80"

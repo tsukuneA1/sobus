@@ -35,7 +35,7 @@ export const Footer = () => {
               </Link>
 
               <Link
-                href="https://x.com/"
+                href="https://x.com/wavoc_sbp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-[37px] w-[225px] items-center justify-between rounded-[27.5px] bg-gradient-to-r from-primary to-secondary px-4 text-[16px] font-medium text-white hover:opacity-90"
