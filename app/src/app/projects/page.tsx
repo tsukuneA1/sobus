@@ -1,6 +1,8 @@
 import { getProjects } from "@/lib/microcms";
 import { ProjectOverviewCard } from "./_components/project-overview-card";
 
+export const revalidate = 60;
+
 const Page = async () => {
   const projects = await getProjects();
 
