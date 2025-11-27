@@ -2,7 +2,69 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col relative">
+      <h2 className="text-[50px] font-bold tracking-[8] text-[#EB8338CC] ml-30 mt-5">
+        WASEDA UNIVERCITY
+      </h2>
+      <div className="flex relative justify-end">
+        <Image
+          className="flex w-[70vw] aspect-[2] object-cover object-[0_65%]"
+          src="/top-photo.jpg"
+          alt="top-photo"
+          width={1253.38}
+          height={634}
+        />
+      </div>
+      <h1 className="flex flex-col absolute text-[116px] tracking-[8] font-bold text-white top-30 left-25">
+        SOCIAL<br></br>BUSINESS<br></br>CIRCLE
+      </h1>
+      <div className="absolute top-130 ">
+        <div className="flex">
+          <Image
+            className="flex"
+            src="/Group 176.png"
+            alt="Vercel logomark"
+            width={640.81}
+            height={337.97}
+          />
+          <Image
+            className="flex"
+            src="/Group 176.png"
+            alt="Vercel logomark"
+            width={640.81}
+            height={337.97}
+          />
+        </div>
+        <div className="flex absolute top-0 left-0 translate-x-[-10%]">
+          <Image
+            className="flex"
+            src="/Group 173 (1).png"
+            alt="Vercel logomark"
+            width={640.81}
+            height={337.97}
+          />
+          <Image
+            className="flex"
+            src="/Group 173 (1).png"
+            alt="Vercel logomark"
+            width={640.81}
+            height={337.97}
+          />
+        </div>
+      </div>
+      <div className="absolute left-250 top-150 w-100 h-48 bg-white rounded-md shadow-lg z-20" />
+      <div className="flex absolute left-250 top-150 p-4 z-30">
+        <Image
+          className="h-auto"
+          src="/hero_logo.svg"
+          alt="ソービズ ロゴ"
+          width={348.99}
+          height={126}
+          priority={true}
+        />
+      </div>
+    </div>
+    /* <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert"
@@ -60,6 +122,6 @@ export default function Home() {
           </a>
         </div>
       </main>
-    </div>
+    </div>*/
   );
 }
