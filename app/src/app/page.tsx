@@ -1,65 +1,55 @@
 import Image from "next/image";
+import AboutBridge from "@/assets/logo/about-橋.png";
+import AboutShape from "@/assets/logo/about-図形.png";
+import AboutWord from "@/assets/logo/about-word.png";
+import AboutLine from "@/assets/logo/about-線.png";
+import AboutImage from "@/assets/logo/about-image.jpg";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <section className="relative h-[441px]">      {/*ここからaboutセクション*/ }
+      <Image
+        src={AboutBridge}
+        alt="about-bridge"
+        width={1185.67}
+        height={186.99}
+        className="flex absolute left-[457px]"
+      />
+      <div className="relative top-[73px]">
+        <div className="relative left-[594px]">
+          <Image
+            src={AboutShape}
+            alt="about-shape"
+            width={669}
+            height={259}
+            className="flex absolute flex-col top-[69px]"
+          />
+          <Image
+            src={AboutWord}
+            alt="about-word"
+            width={215}
+            height={88}
+            className="flex absolute left-[47px]"
+          />
+          <div className="absolute top-[123px] left-[66px] w-134.5 h-38">
+            <h1 className="flex relative text-[24px] text-[#EB8338] font-bold">ソービズとは</h1>
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={AboutLine}
+              alt="about-line"
+              width={197}
+              height={4}
+              className="flex relative flex-col"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <h2 className="flex relative top-[23px]">十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうきゅうもほんのわずかでしたが、受持ちが標本の採集や整理で生れ付き好きなことでしたから、わたくしは毎日ずいぶん愉快にはたらきました。殊にそのころ、モリーオ市では競馬場を植物園に拵こしらえ直すというの</h2>
+          </div>
         </div>
-      </main>
-    </div>
+        <Image
+          src={AboutImage}
+          alt="about-image"
+          height={328}
+          className="flex absolute flex-col left-0 bg-zinc-50"
+        />
+      </div>
+    </section>
   );
 }
