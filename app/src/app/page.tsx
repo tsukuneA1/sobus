@@ -6,23 +6,23 @@ export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        {/* mvv */}
-        <div className="h-[1220px] w-full bg-secondary flex flex-col items-center">
+        {/* mvv ここから*/}
+        <section className="h-[1220px] w-full bg-secondary flex flex-col items-center">
           <Image
             src={building}
             alt="背景の建物"
             className="w-full h-auto block relative top-0 m-0"
           />
 
-          <div className="h-[1076px] w-[90%] bg-card rounded-[70px_0_0_70px] p-[80px_10px_80px_100px] box-border -mt-3.5 ml-auto relative">
-            <div className="w-[50%] aspect-100/76 overflow-hidden absolute top-1/3 right-0 z-1">
+          <article className="h-[1076px] w-[90%] bg-card rounded-[70px_0_0_70px] p-[80px_10px_80px_100px] box-border -mt-3.5 ml-auto relative">
+            <figure className="w-[50%] aspect-100/76 overflow-hidden absolute top-1/3 right-0 z-1">
               <Image
                 src={presentation}
                 alt="プレゼン画像"
                 className="w-full h-full object-cover object-[right_center] opacity-20"
               />
               <div className="absolute inset-0 bg-linear-to-r from-white to-transparent"></div>
-            </div>
+            </figure>
 
             <div className="relative z-2">
               <h3 className="mt-4 mb-4 font-bold text-[32px]">
@@ -34,7 +34,7 @@ export default function Home() {
             </div>
 
             <div className="relative z-2">
-              <div>
+              <section>
                 <h2 className="mt-3 mb-3 font-bold flex items-end">
                   <span className="text-[100px] leading-none">M</span>
                   <span className="text-[80px] leading-none bg-linear-to-r from-accent-green to-primary bg-clip-text text-transparent opacity-60">
@@ -47,9 +47,9 @@ export default function Home() {
                 <p className="leading-relaxed mt-4 mb-4 text-[16px] font-bold">
                   あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、
                 </p>
-              </div>
+              </section>
 
-              <div className="ml-[10vw]">
+              <section className="ml-[10vw]">
                 <h2 className="font-bold mt-3 mb-3 flex items-end">
                   <span className="text-[100px] leading-none">V</span>
                   <span className="text-[80px] leading-none bg-linear-to-r from-accent-green to-primary bg-clip-text text-transparent opacity-60">
@@ -62,9 +62,9 @@ export default function Home() {
                 <p className="leading-relaxed mt-4 mb-4 text-[16px] font-bold">
                   あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、
                 </p>
-              </div>
+              </section>
 
-              <div className="ml-[20vw]">
+              <section className="ml-[20vw]">
                 <h2 className="font-bold mt-3 mb-3 flex items-end">
                   <span className="text-[100px] leading-none">V</span>
                   <span className="text-[80px] leading-none bg-linear-to-r from-accent-green to-primary bg-clip-text text-transparent opacity-60">
@@ -77,11 +77,10 @@ export default function Home() {
                 <p className="leading-relaxed mt-4 mb-4 text-[16px] font-bold">
                   あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、
                 </p>
-              </div>
+              </section>
             </div>
-          </div>
-        </div>
-
+          </article>
+        </section>
         {/*mvvここまで */}
 
         <Image
