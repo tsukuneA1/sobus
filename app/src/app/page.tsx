@@ -1,13 +1,13 @@
 import Image from "next/image";
-import AboutBridge from "@/assets/logo/about-橋.png";
-import AboutShape from "@/assets/logo/about-図形.png";
-import AboutWord from "@/assets/logo/about-word.png";
-import AboutLine from "@/assets/logo/about-線.png";
+import AboutBridge from "@/assets/logo/about-bridge.png";
 import AboutImage from "@/assets/logo/about-image.jpg";
+import AboutLine from "@/assets/logo/about-line.png";
+import AboutShape from "@/assets/logo/about-shape.png";
+import AboutWord from "@/assets/logo/about-word.png";
 
 export default function Home() {
   return (
-    <section className="relative h-[441px]">      {/*ここからaboutセクション*/ }
+    <section className="relative h-[441px]">
       <Image
         src={AboutBridge}
         alt="about-bridge"
@@ -32,7 +32,9 @@ export default function Home() {
             className="flex absolute left-[47px]"
           />
           <div className="absolute top-[123px] left-[66px] w-134.5 h-38">
-            <h1 className="flex relative text-[24px] text-[#EB8338] font-bold">ソービズとは</h1>
+            <h2 className="flex relative text-[24px] text-[#EB8338] font-bold">
+              ソービズとは
+            </h2>
             <Image
               src={AboutLine}
               alt="about-line"
@@ -40,7 +42,9 @@ export default function Home() {
               height={4}
               className="flex relative flex-col"
             />
-            <h2 className="flex relative top-[23px]">十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうきゅうもほんのわずかでしたが、受持ちが標本の採集や整理で生れ付き好きなことでしたから、わたくしは毎日ずいぶん愉快にはたらきました。殊にそのころ、モリーオ市では競馬場を植物園に拵こしらえ直すというの</h2>
+            <p className="flex relative top-[23px]">
+              十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうきゅうもほんのわずかでしたが、受持ちが標本の採集や整理で生れ付き好きなことでしたから、わたくしは毎日ずいぶん愉快にはたらきました。殊にそのころ、モリーオ市では競馬場を植物園に拵こしらえ直すというの
+            </p>
           </div>
         </div>
         <Image
