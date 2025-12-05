@@ -56,9 +56,6 @@ coverage/
 .codex/
 .cursor/
 .gemini/
-.github/copilot-instructions.md
-.github/instructions/
-.github/prompts/
 .junie/
 .kiro/
 .opencode/
