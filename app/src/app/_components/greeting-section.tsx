@@ -1,6 +1,6 @@
+import Image, { type StaticImageData } from "next/image";
 import founderMessage from "@/assets/sections/history/founder-message.png";
 import historyTalk from "@/assets/sections/history/history-talk.png";
-import Image, { StaticImageData } from "next/image";
 
 type Story = {
   title: string;
