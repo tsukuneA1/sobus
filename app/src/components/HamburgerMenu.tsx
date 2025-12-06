@@ -18,7 +18,7 @@ export const HamburgerMenu = () => {
         onClick={toggleMenu}
         aria-label={isOpen ? "メニューを閉じる" : "メニューを開く"}
         aria-expanded={isOpen}
-        className="relative inline-flex h-[24px] w-[30px] flex-col justify-center gap-[6px] p-0"
+        className="relative inline-flex h-[24px] w-[30px] flex-col justify-center gap-[6px] p-0 cursor-pointer"
       >
         <span
           className={`block h-[2px] w-full rounded bg-primary transition-all duration-300 ${
