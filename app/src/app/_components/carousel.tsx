@@ -144,10 +144,10 @@ export const Carousel = () => {
 
         {/* インジケーター */}
         <div className="flex justify-center gap-2 mt-6">
-          {images.map((_, index) => (
+          {images.map((image, index) => (
             <button
               type="button"
-              key={index}
+              key={image.id}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-colors ${
                 index === currentIndex
