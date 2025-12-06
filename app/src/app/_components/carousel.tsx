@@ -1,10 +1,10 @@
 import Image from "next/image";
+import CarouselImage1 from "@/assets/carousel/image-1.jpg";
 
-export const ActivityImagesSection = () => {
+export const Carousel = () => {
   return (
     <section className="w-full max-w-[1200px] mx-auto px-4">
       <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-[65px]">
-        {/* Left Image */}
         <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl">
           <div
             className="relative w-full h-full overflow-hidden"
@@ -21,19 +21,15 @@ export const ActivityImagesSection = () => {
           </div>
         </div>
 
-        {/* Center Image */}
-        <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl">
-          <div className="relative w-full h-full overflow-hidden">
-            <Image
-              src="/images/activity-2.png"
-              alt="Activity 2"
-              fill
-              className="object-cover"
-            />
-          </div>
+        <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl overflow-hidden">
+          <Image
+            src={CarouselImage1}
+            alt="Activity 2"
+            fill
+            className="object-cover"
+          />
         </div>
-
-        {/* Right Image */}
+        
         <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl">
           <div
             className="relative w-full h-full overflow-hidden"
