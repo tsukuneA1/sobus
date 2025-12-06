@@ -29,7 +29,7 @@ export const Carousel = () => {
             className="object-cover"
           />
         </div>
-        
+
         <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl">
           <div
             className="relative w-full h-full overflow-hidden"
