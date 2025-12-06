@@ -11,8 +11,6 @@
     "check": "biome check --write ."
   },
   "dependencies": {
-    "framer-motion": "^12.23.25",
-    "lucide-react": "^0.556.0",
     "microcms-js-sdk": "^3.2.0",
     "next": "16.0.1",
     "react": "19.2.0",

@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import CarouselImage1 from "@/assets/carousel/demo1.png";
 import CarouselImage2 from "@/assets/carousel/demo2.png";
 import CarouselImage3 from "@/assets/carousel/demo3.png";
+import CarouselImage4 from "@/assets/carousel/demo4.png";
+import BackIcon from "@/assets/guide-button/back.svg";
+import NextIcon from "@/assets/guide-button/next.svg";
 
 const images = [
   {
@@ -21,6 +24,11 @@ const images = [
     id: 3,
     src: CarouselImage3,
     alt: "Activity 3",
+  },
+  {
+    id: 4,
+    src: CarouselImage4,
+    alt: "Activity 4",
   },
 ];
 
@@ -118,46 +126,20 @@ export const Carousel = () => {
         <button
           type="button"
           onClick={goToPrevious}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary/80 hover:bg-primary text-primary-foreground rounded-full p-3 shadow-lg transition-colors z-10"
+          className="absolute left-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-80 z-10"
           aria-label="Previous slide"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
+          <Image src={BackIcon} alt="Previous" width={48} height={48} />
         </button>
 
         {/* 次へボタン */}
         <button
           type="button"
           onClick={goToNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary/80 hover:bg-primary text-primary-foreground rounded-full p-3 shadow-lg transition-colors z-10"
+          className="absolute right-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-80 z-10"
           aria-label="Next slide"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
+          <Image src={NextIcon} alt="Next" width={48} height={48} />
         </button>
 
         {/* インジケーター */}
