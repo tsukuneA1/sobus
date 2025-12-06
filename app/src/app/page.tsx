@@ -1,6 +1,6 @@
+import { ActivityImagesSection } from "./_components/activity-images-section";
 import { GreetingSection } from "./_components/greeting-section";
 import { MvvSection } from "./_components/mvv-section";
-import { ActivityImagesSection } from "./_components/activity-images-section";
 
 export default function Home() {
   return (
