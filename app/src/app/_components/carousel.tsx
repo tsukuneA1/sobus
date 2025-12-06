@@ -1,49 +1,180 @@
+"use client";
+
 import Image from "next/image";
-import CarouselImage1 from "@/assets/carousel/image-1.jpg";
+import { useEffect, useState } from "react";
+import CarouselImage1 from "@/assets/carousel/demo1.png";
+import CarouselImage2 from "@/assets/carousel/demo2.png";
+import CarouselImage3 from "@/assets/carousel/demo3.png";
+
+const images = [
+  {
+    id: 1,
+    src: CarouselImage1,
+    alt: "Activity 1",
+  },
+  {
+    id: 2,
+    src: CarouselImage2,
+    alt: "Activity 2",
+  },
+  {
+    id: 3,
+    src: CarouselImage3,
+    alt: "Activity 3",
+  },
+];
+
+const getClipPath = (position: number) => {
+  if (position === 0) return "polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%)"; // 左
+  if (position === 1) return null;
+  if (position === 2) return "polygon(0% 0%, 100% 15%, 100% 85%, 0% 100%)"; // 右
+  return null;
+};
 
 export const Carousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalSlides = images.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [totalSlides]);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section className="w-full max-w-[1200px] mx-auto px-4">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-[65px]">
-        <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl">
+      <div className="relative">
+        {/* カルーセルコンテナ */}
+        <div className="overflow-hidden">
           <div
-            className="relative w-full h-full overflow-hidden"
-            style={{
-              clipPath: "polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%)",
-            }}
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            <Image
-              src="/images/activity-1.png"
-              alt="Activity 1"
-              fill
-              className="object-cover"
-            />
+            {images.map((image) => (
+              <div
+                key={image.id}
+                className="w-full shrink-0 flex justify-center"
+              >
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-[65px]">
+                  {/* 3枚の画像を横並びで表示 */}
+                  {[0, 1, 2].map((offset) => {
+                    const imgIndex = (currentIndex + offset) % totalSlides;
+                    const img = images[imgIndex];
+                    const clipPath = getClipPath(offset);
+
+                    return (
+                      <div
+                        key={offset}
+                        className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl"
+                      >
+                        {clipPath ? (
+                          <div
+                            className="relative w-full h-full overflow-hidden"
+                            style={{
+                              clipPath,
+                            }}
+                          >
+                            <Image
+                              src={img.src}
+                              alt={img.alt}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <div className="relative w-full h-full overflow-hidden">
+                            <Image
+                              src={img.src}
+                              alt={img.alt}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl overflow-hidden">
-          <Image
-            src={CarouselImage1}
-            alt="Activity 2"
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        <div className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl">
-          <div
-            className="relative w-full h-full overflow-hidden"
-            style={{
-              clipPath: "polygon(0% 0%, 100% 15%, 100% 85%, 0% 100%)",
-            }}
+        {/* 前へボタン */}
+        <button
+          type="button"
+          onClick={goToPrevious}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary/80 hover:bg-primary text-primary-foreground rounded-full p-3 shadow-lg transition-colors z-10"
+          aria-label="Previous slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-6 h-6"
           >
-            <Image
-              src="/images/activity-3.png"
-              alt="Activity 3"
-              fill
-              className="object-cover"
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
             />
-          </div>
+          </svg>
+        </button>
+
+        {/* 次へボタン */}
+        <button
+          type="button"
+          onClick={goToNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary/80 hover:bg-primary text-primary-foreground rounded-full p-3 shadow-lg transition-colors z-10"
+          aria-label="Next slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </button>
+
+        {/* インジケーター */}
+        <div className="flex justify-center gap-2 mt-6">
+          {images.map((_, index) => (
+            <button
+              type="button"
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === currentIndex
+                  ? "bg-primary"
+                  : "bg-muted hover:bg-primary/50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
