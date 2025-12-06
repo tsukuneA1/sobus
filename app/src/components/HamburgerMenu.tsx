@@ -8,6 +8,7 @@ export const HamburgerMenu = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    console.log(isOpen);
   };
 
   return (
@@ -36,33 +37,35 @@ export const HamburgerMenu = () => {
         />
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 top-[68px] z-40 bg-primary">
-          <nav className="flex flex-col items-center gap-8 pt-12">
-            <Link
-              href="/"
-              onClick={toggleMenu}
-              className="text-2xl font-bold text-white transition-opacity hover:opacity-80"
-            >
-              トップページ
-            </Link>
-            <Link
-              href="/project"
-              onClick={toggleMenu}
-              className="text-2xl font-bold text-white transition-opacity hover:opacity-80"
-            >
-              活動実績
-            </Link>
-            <Link
-              href="/schedule"
-              onClick={toggleMenu}
-              className="text-2xl font-bold text-white transition-opacity hover:opacity-80"
-            >
-              年間スケジュール
-            </Link>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`fixed right-0 top-[68px] z-[60] w-[348px] bg-primary transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col items-center gap-8 py-[87px]">
+          <Link
+            href="/"
+            onClick={toggleMenu}
+            className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
+          >
+            トップページ
+          </Link>
+          <Link
+            href="/projects"
+            onClick={toggleMenu}
+            className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
+          >
+            活動実績
+          </Link>
+          <Link
+            href="/schedules"
+            onClick={toggleMenu}
+            className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
+          >
+            年間スケジュール
+          </Link>
+        </nav>
+      </div>
     </>
   );
 };
