@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeaderLogo from "@/assets/logo/header-logo.svg";
+import { HamburgerMenu } from "@/components/HamburgerMenu";
 
 export const Header = () => {
   return (
@@ -38,15 +39,7 @@ export const Header = () => {
             X
           </Link>
 
-          <button
-            type="button"
-            aria-label="メニューを開く"
-            className="inline-flex h-[24px] w-[30px] flex-col justify-between p-0"
-          >
-            <span className="block h-[2px] w-full rounded bg-primary" />
-            <span className="block h-[2px] w-full rounded bg-primary" />
-            <span className="block h-[2px] w-full rounded bg-primary" />
-          </button>
+          <HamburgerMenu />
         </nav>
       </div>
     </header>

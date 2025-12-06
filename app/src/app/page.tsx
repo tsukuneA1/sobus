@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import TopPhoto from "@/assets/hero-section/top-photo.png";
 import TopBridge from "@/assets/hero-section/top-bridge.png";
@@ -95,6 +96,7 @@ export default function Home() {
             Documentation
           </a>
         </div>
+
       </main>
     </div>*/
   );
