@@ -1,33 +1,65 @@
 import Image from "next/image";
-import Link from "next/link";
+import { GradientLink } from "@/components/gradient-link";
 import type { Project } from "@/types/microcms";
 
 type ProjectOverviewCardProps = {
   project: Project;
 };
 
+/**
+ * HTMLテキストからプレーンテキストを抽出
+ */
+const stripHtml = (html: string): string => {
+  return html
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .trim();
+};
+
+/**
+ * テキストを指定文字数で切り詰め
+ */
+const truncateText = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength)}...`;
+};
+
 export const ProjectOverviewCard = ({ project }: ProjectOverviewCardProps) => {
-  const truncatedDescription =
-    project.description.length > 100
-      ? `${project.description.slice(0, 100)}...`
-      : project.description;
+  const plainDescription = stripHtml(project.description);
+  const truncatedDescription = truncateText(plainDescription, 100);
 
   return (
-    <Link href={`/projects/${project.id}`}>
-      <article className="flex gap-4">
+    <article className="relative flex flex-col gap-6 md:flex-row md:gap-8">
+      {/* 画像 */}
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden rounded-lg md:h-[294px] md:w-[392px]">
         <Image
           src={project.sumbnail.url}
           alt={project.title}
-          width={project.sumbnail.width || 400}
-          height={project.sumbnail.height || 300}
-          className="w-1/3"
+          width={392}
+          height={294}
+          className="h-full w-full object-cover"
         />
-        <div className="flex w-2/3 flex-col gap-2">
-          <span>{project.category}</span>
-          <h2>{project.title}</h2>
-          <p>{truncatedDescription}</p>
+      </div>
+
+      {/* テキストコンテンツ */}
+      <div className="flex flex-1 flex-col justify-center gap-4">
+        <div className="space-y-2">
+          <h3 className="text-xl font-medium leading-normal text-black md:text-[24px]">
+            {project.title}
+          </h3>
+          <p className="text-sm font-normal leading-normal text-black md:text-base">
+            {truncatedDescription}
+          </p>
         </div>
-      </article>
-    </Link>
+
+        <div className="self-end">
+          <GradientLink
+            href={`/projects/${project.id}`}
+            text="詳細はこちら"
+            width={178}
+          />
+        </div>
+      </div>
+    </article>
   );
 };

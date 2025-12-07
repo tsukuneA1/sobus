@@ -1,9 +1,6 @@
----
-root: true
-targets: ["*"]
-description: "Project overview and architecture guide"
-globs: ["*"]
----
+# Additional Conventions Beyond the Built-in Functions
+
+As this project's AI coding tool, you must follow the additional conventions below, in addition to the built-in functions.
 
 # ソービズ Webサイトプロジェクト
 
@@ -17,9 +14,10 @@ globs: ["*"]
 
 ### 主要機能
 1. プロジェクト実績の紹介（ビジコン、ボランティア、講演会等）
-2. MVV（Mission/Vision/Value）の表示
-3. 活動写真ギャラリー
-4. 年間スケジュール（Google Calendar連携予定）
+2. 日々の活動ブログ（インスタ感覚の投稿）
+3. MVV（Mission/Vision/Value）の表示
+4. 活動写真ギャラリー
+5. 年間スケジュール（Google Calendar連携予定）
 
 ## 技術スタック
 
@@ -84,6 +82,8 @@ sobus/
 - `app/src/app/page.tsx` - トップページ (`/`)
 - `app/src/app/project/page.tsx` - プロジェクト一覧 (`/project`)
 - `app/src/app/project/[slug]/page.tsx` - プロジェクト詳細 (`/project/noto-volunteer-2024`)
+- `app/src/app/blog/page.tsx` - ブログ一覧 (`/blog`)
+- `app/src/app/blog/[slug]/page.tsx` - ブログ詳細 (`/blog/spring-orientation-2024`)
 
 ### レイアウト
 - `app/src/app/layout.tsx` - ルートレイアウト（全ページ共通）
