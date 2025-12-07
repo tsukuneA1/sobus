@@ -1,11 +1,6 @@
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import { createClient } from "microcms-js-sdk";
-import type {
-  Blog,
-  Gallery,
-  MicroCMSListResponse,
-  Project,
-} from "@/types/microcms";
+import type { Gallery, MicroCMSListResponse, Project } from "@/types/microcms";
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
@@ -46,35 +41,6 @@ export const getProjects = async (queries?: MicroCMSQueries) => {
 export const getProjectById = async (contentId: string) => {
   return await client.get<Project>({
     endpoint: "projects",
-    contentId,
-  });
-};
-
-// ============================================
-// Blog API
-// ============================================
-
-/**
- * ブログ一覧を取得
- * @param queries - microCMSクエリパラメータ
- * @returns ブログ配列
- */
-export const getBlogs = async (queries?: MicroCMSQueries) => {
-  const data = await client.get<MicroCMSListResponse<Blog>>({
-    endpoint: "blog",
-    queries,
-  });
-  return data.contents;
-};
-
-/**
- * ブログ詳細を取得
- * @param contentId - コンテンツID
- * @returns ブログ
- */
-export const getBlogById = async (contentId: string) => {
-  return await client.get<Blog>({
-    endpoint: "blog",
     contentId,
   });
 };
