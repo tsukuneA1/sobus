@@ -28,7 +28,7 @@ const Page = async () => {
 
           {/* プロジェクト一覧 */}
           {projects.length > 0 ? (
-            <div className="space-y-16 ml-36">
+            <div className="space-y-16 mx-36">
               {projects.map((project) => (
                 <ProjectOverviewCard key={project.id} project={project} />
               ))}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NextIcon from "@/assets/guide-button/next.svg";
 import type { Project } from "@/types/microcms";
+import { GradientLink } from "@/components/gradient-link";
 
 type ProjectOverviewCardProps = {
   project: Project;
@@ -53,20 +54,13 @@ export const ProjectOverviewCard = ({ project }: ProjectOverviewCardProps) => {
           </p>
         </div>
 
-        {/* 詳細はこちらボタン */}
-        <Link
-          href={`/projects/${project.id}`}
-          className="group inline-flex h-[37px] w-[178px] items-center justify-between rounded-[27.5px] bg-gradient-to-r from-primary to-secondary px-4 text-[16px] font-bold text-white transition-opacity hover:opacity-90"
-        >
-          <span>詳細はこちら</span>
-          <Image
-            src={NextIcon}
-            alt=""
-            width={18}
-            height={19}
-            className="h-[19px] w-[18px]"
+        <div className="self-end">
+          <GradientLink
+            href={`/projects/${project.id}`}
+            text="詳細はこちら"
+            width={178}
           />
-        </Link>
+        </div>
       </div>
     </article>
   );
