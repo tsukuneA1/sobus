@@ -31,7 +31,6 @@ const sidebars: SidebarsConfig = {
       items: [
         'pages/top-page',
         'pages/project-page',
-        'pages/blog-page',
       ],
     },
     {
@@ -40,7 +39,6 @@ const sidebars: SidebarsConfig = {
       items: [
         'microCMS/index',
         'microCMS/project',
-        'microCMS/blog',
         'microCMS/gallery',
       ],
     },

@@ -20,14 +20,6 @@ export type Project = {
   gallery?: MicroCMSImage[];
 } & MicroCMSBase;
 
-export type Blog = {
-  title: string;
-  category?: string;
-  thumbnail: MicroCMSImage;
-  content: string;
-  gallery?: MicroCMSImage[];
-} & MicroCMSBase;
-
 export type Gallery = {
   image: MicroCMSImage;
   caption?: string;
