@@ -1,8 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import NextIcon from "@/assets/guide-button/next.svg";
-import type { Project } from "@/types/microcms";
 import { GradientLink } from "@/components/gradient-link";
+import type { Project } from "@/types/microcms";
 
 type ProjectOverviewCardProps = {
   project: Project;
