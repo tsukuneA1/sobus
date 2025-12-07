@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import NextIcon from "@/assets/guide-button/next.svg";
 import FooterLogo from "@/assets/logo/footer-logo.svg";
+import { GradientLink } from "./gradient-link";
 
 export const Footer = () => {
   return (
@@ -17,39 +16,16 @@ export const Footer = () => {
             </p>
 
             <div className="mt-4 flex w-full max-w-[225px] flex-col gap-3">
-              <Link
+              <GradientLink
                 href="https://www.instagram.com/wavoc_social_business_/"
+                text="Instagram"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-[37px] w-[225px] items-center justify-between rounded-[27.5px] bg-gradient-to-r from-primary to-secondary px-4 text-[16px] font-bold text-white hover:opacity-90"
-                aria-label="Instagramへ移動"
-              >
-                <span>Instagram</span>
-                <Image
-                  src={NextIcon}
-                  alt=""
-                  width={21}
-                  height={24}
-                  className="h-[18px] w-auto"
-                />
-              </Link>
-
-              <Link
+              />
+              <GradientLink
                 href="https://x.com/wavoc_sbp"
+                text="X"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-[37px] w-[225px] items-center justify-between rounded-[27.5px] bg-gradient-to-r from-primary to-secondary px-4 text-[16px] font-medium text-white hover:opacity-90"
-                aria-label="Xへ移動"
-              >
-                <span>X</span>
-                <Image
-                  src={NextIcon}
-                  alt=""
-                  width={21}
-                  height={24}
-                  className="h-[18px] w-auto"
-                />
-              </Link>
+              />
             </div>
           </div>
 
