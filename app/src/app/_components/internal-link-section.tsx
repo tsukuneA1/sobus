@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import NextIcon from "@/assets/guide-button/next.svg";
-import type { Project } from "@/types/microcms";
 import Bridges from "@/assets/logo/bridges.svg";
+import type { Project } from "@/types/microcms";
 
 type InternalLinkSectionProps = {
   latestProject?: Project;

@@ -1,8 +1,8 @@
 import { getProjects } from "@/lib/microcms";
-import { InternalLinkSection } from "./_components/internal-link-section";
 import { Carousel } from "./_components/carousel";
 import { GreetingSection } from "./_components/greeting-section";
 import { HeroSection } from "./_components/hero-section";
+import { InternalLinkSection } from "./_components/internal-link-section";
 import { MvvSection } from "./_components/mvv-section";
 
 export const revalidate = 60;
