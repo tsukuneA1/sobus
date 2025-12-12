@@ -11,7 +11,7 @@ export const InternalLinkSection = () => {
       {/* <section className="relative w-full pb-[170px] before:absolute before:inset-0 before:-top-120 before:bg-primary/20 before:pointer-events-none"> */}
       <Image
         src={Bridges}
-        alt="bridges"
+        alt=""
         fill
         className="object-bottom object-contain pointer-events-none"
       />
