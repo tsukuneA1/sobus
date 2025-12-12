@@ -1,4 +1,5 @@
 import { getProjects } from "@/lib/microcms";
+import { AboutSection } from "./_components/about-section";
 import { Carousel } from "./_components/carousel";
 import { GreetingSection } from "./_components/greeting-section";
 import { HeroSection } from "./_components/hero-section";
@@ -17,6 +18,7 @@ export default async function Home() {
     <main className="flex min-h-screen w-full flex-col gap-[105px]">
       <HeroSection />
       <MvvSection />
+      <AboutSection />
       <Carousel />
       <GreetingSection />
       <InternalLinkSection latestProject={latestProject} />
