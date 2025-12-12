@@ -26,7 +26,7 @@ export const MvvSection = () => {
             私たちは「MVV」を掲げています。
           </h2>
           <p className="mt-5 mb-5 font-bold text-[24px]">
-            あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、
+            社会課題を解決する担い手を増やすことを目的にしています
           </p>
         </header>
 
