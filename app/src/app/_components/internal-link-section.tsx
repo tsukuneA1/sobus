@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import NextIcon from "@/assets/guide-button/next.svg";
-import Bridges from "@/assets/logo/bridges.svg";
 import Activity1 from "@/assets/internal-link/activity-1.jpg";
 import Activity2 from "@/assets/internal-link/activity-2.jpg";
+import Bridges from "@/assets/logo/bridges.svg";
 
 export const InternalLinkSection = () => {
   return (
     <section className="relative w-full py-[170px] bg-primary/20">
-    {/* <section className="relative w-full pb-[170px] before:absolute before:inset-0 before:-top-120 before:bg-primary/20 before:pointer-events-none"> */}
+      {/* <section className="relative w-full pb-[170px] before:absolute before:inset-0 before:-top-120 before:bg-primary/20 before:pointer-events-none"> */}
       <Image
         src={Bridges}
         alt="bridges"
