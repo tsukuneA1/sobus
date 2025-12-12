@@ -2,91 +2,43 @@ import Image from "next/image";
 import Link from "next/link";
 import NextIcon from "@/assets/guide-button/next.svg";
 import Bridges from "@/assets/logo/bridges.svg";
-import type { Project } from "@/types/microcms";
+import Activity1 from "@/assets/internal-link/activity-1.jpg";
+import Activity2 from "@/assets/internal-link/activity-2.jpg";
 
-type InternalLinkSectionProps = {
-  latestProject?: Project;
-};
-
-/**
- * HTMLテキストからプレーンテキストを抽出
- */
-const stripHtml = (html: string): string => {
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .trim();
-};
-
-/**
- * テキストを指定文字数で切り詰め
- */
-const truncateText = (text: string, maxLength: number): string => {
-  if (text.length <= maxLength) return text;
-  return `${text.slice(0, maxLength)}...`;
-};
-
-export const InternalLinkSection = ({
-  latestProject,
-}: InternalLinkSectionProps) => {
-  const projectDescription = latestProject
-    ? truncateText(stripHtml(latestProject.description), 50)
-    : "十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうき";
-
+export const InternalLinkSection = () => {
   return (
-    <section className="relative w-full pb-[170px] bg-primary/20">
+    <section className="relative w-full py-[170px] bg-primary/20">
+    {/* <section className="relative w-full pb-[170px] before:absolute before:inset-0 before:-top-120 before:bg-primary/20 before:pointer-events-none"> */}
       <Image
         src={Bridges}
         alt="bridges"
         fill
-        className="object-bottom object-contain"
+        className="object-bottom object-contain pointer-events-none"
       />
 
       {/* 活動実績セクション */}
-      <div className="relative mb-16 flex flex-col items-center gap-8 md:mb-[358px] md:flex-row">
+      <div className="relative flex flex-col items-center gap-8 mb-[125px] md:flex-row z-10">
         {/* 左側の画像 */}
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative h-[200px] w-full overflow-hidden rounded-lg md:h-[280px] md:w-[367px]">
-            {latestProject?.gallery?.[0] ? (
-              <Image
-                src={latestProject.gallery[0].url}
-                alt={latestProject.title}
-                width={367}
-                height={280}
-                className="h-full w-full object-cover"
-              />
-            ) : latestProject?.sumbnail ? (
-              <Image
-                src={latestProject.sumbnail.url}
-                alt={latestProject.title}
-                width={367}
-                height={280}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="h-full w-full bg-muted" />
-            )}
+            <Image
+              src={Activity1}
+              alt="活動の様子"
+              width={367}
+              height={280}
+              className="h-full w-full object-cover"
+              placeholder="blur"
+            />
           </div>
-          <div className="relative h-[200px] w-full overflow-hidden rounded-lg md:h-[319px] md:w-[466px]">
-            {latestProject?.gallery?.[1] ? (
-              <Image
-                src={latestProject.gallery[1].url}
-                alt={latestProject.title}
-                width={466}
-                height={319}
-                className="h-full w-full object-cover"
-              />
-            ) : latestProject?.sumbnail ? (
-              <Image
-                src={latestProject.sumbnail.url}
-                alt={latestProject.title}
-                width={466}
-                height={319}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="h-full w-full bg-muted" />
-            )}
+          <div className="relative h-[200px] w-full overflow-hidden rounded-lg md:h-[280px] md:w-[367px]">
+            <Image
+              src={Activity2}
+              alt="活動の様子"
+              width={367}
+              height={280}
+              className="h-full w-full object-cover"
+              placeholder="blur"
+            />
           </div>
         </div>
 
@@ -98,7 +50,7 @@ export const InternalLinkSection = ({
                 活動実績
               </h2>
               <p className="text-sm font-medium leading-6 text-black md:text-base">
-                {projectDescription}
+                こちらではソービズの過去の活動を紹介します。活動の様子が写真でご覧いただけます。
               </p>
             </div>
 
@@ -120,10 +72,10 @@ export const InternalLinkSection = ({
       </div>
 
       {/* 年間スケジュールボタン */}
-      <div className="flex justify-center px-6">
+      <div className="relative flex justify-center px-6 z-10">
         <Link
           href="/schedule"
-          className="inline-flex h-[80px] w-full max-w-[502px] items-center justify-center rounded-[54.5px] border-[3px] border-solid border-primary bg-white text-2xl font-bold text-primary transition-opacity hover:opacity-90 md:h-[109px] md:text-[32px] z-10"
+          className="inline-flex h-[80px] w-full max-w-[502px] items-center justify-center rounded-[54.5px] border-[3px] border-solid border-primary bg-white text-2xl font-bold text-primary transition-opacity hover:opacity-90 md:h-[109px] md:text-[32px]"
         >
           年間スケジュール
         </Link>

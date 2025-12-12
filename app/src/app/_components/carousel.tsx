@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import CarouselImage1 from "@/assets/carousel/carousel-1.jpg";
 import CarouselImage2 from "@/assets/carousel/carousel-2.jpg";
 import CarouselImage3 from "@/assets/carousel/carousel-3.jpg";
-import CarouselImage4 from "@/assets/carousel/demo4.png";
 import BackIcon from "@/assets/guide-button/back.svg";
 import NextIcon from "@/assets/guide-button/next.svg";
 
@@ -24,11 +23,6 @@ const images = [
     id: 3,
     src: CarouselImage3,
     alt: "Activity 3",
-  },
-  {
-    id: 4,
-    src: CarouselImage4,
-    alt: "Activity 4",
   },
 ];
 
