@@ -1,6 +1,6 @@
 import { AboutSection } from "./_components/about-section";
 import { Carousel } from "./_components/carousel";
-import { GreetingSection } from "./_components/greeting-section";
+// import { GreetingSection } from "./_components/greeting-section";
 import { HeroSection } from "./_components/hero-section";
 import { InternalLinkSection } from "./_components/internal-link-section";
 import { MvvSection } from "./_components/mvv-section";
