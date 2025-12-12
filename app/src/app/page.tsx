@@ -5,7 +5,6 @@ import { HeroSection } from "./_components/hero-section";
 import { InternalLinkSection } from "./_components/internal-link-section";
 import { MvvSection } from "./_components/mvv-section";
 
-export const revalidate = 60;
 
 export default async function Home() {
   return (
