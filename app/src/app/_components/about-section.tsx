@@ -7,13 +7,13 @@ import AboutWord from "@/assets/logo/about-word.png";
 
 export const AboutSection = () => {
   return (
-    <section className="relative h-[441px]">
+    <section className="relative h-[441px] overflow-hidden">
       <Image
         src={AboutBridge}
         alt="about-bridge"
         width={1185.67}
         height={186.99}
-        className="flex absolute left-[457px]"
+        className="flex absolute right-0"
       />
       <div className="relative top-[73px]">
         <div className="relative left-[594px]">
