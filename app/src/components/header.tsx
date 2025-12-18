@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { links } from "@/app/constants/links";
 import HeaderLogo from "@/assets/logo/header-logo.svg";
 import { HamburgerMenu } from "@/components/hamburger-menu";
-import { links } from "@/app/constants/links";
 
 export const Header = () => {
   return (

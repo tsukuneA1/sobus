@@ -1,8 +1,8 @@
 "use client";
 
-import { links } from "@/app/constants/links";
 import Link from "next/link";
 import { useState } from "react";
+import { links } from "@/app/constants/links";
 
 export const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);

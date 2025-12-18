@@ -1,7 +1,7 @@
 import Image from "next/image";
+import { links } from "@/app/constants/links";
 import FooterLogo from "@/assets/logo/footer-logo.svg";
 import { GradientLink } from "./gradient-link";
-import { links } from "@/app/constants/links";
 
 export const Footer = () => {
   return (
@@ -20,11 +20,7 @@ export const Footer = () => {
             text="Instagram"
             target="_blank"
           />
-          <GradientLink
-            href={links.x.url}
-            text="X"
-            target="_blank"
-          />
+          <GradientLink href={links.x.url} text="X" target="_blank" />
         </div>
       </div>
 
