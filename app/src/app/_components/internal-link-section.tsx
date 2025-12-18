@@ -8,7 +8,6 @@ import Bridges from "@/assets/logo/bridges.svg";
 export const InternalLinkSection = () => {
   return (
     <section className="relative w-full py-[170px] bg-primary/20">
-      {/* <section className="relative w-full pb-[170px] before:absolute before:inset-0 before:-top-120 before:bg-primary/20 before:pointer-events-none"> */}
       <Image
         src={Bridges}
         alt=""
