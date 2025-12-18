@@ -61,7 +61,7 @@ const Page = async () => {
       </div>
 
       {/* 月刊アーカイブ（右側固定、デスクトップのみ表示） */}
-      <div className="mr-36">
+      <div className="mr-[25px] md:mr-36">
         <MonthlyArchive projects={projects} />
       </div>
     </div>

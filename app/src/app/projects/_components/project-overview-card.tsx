@@ -7,16 +7,6 @@ type ProjectOverviewCardProps = {
 };
 
 /**
- * HTMLテキストからプレーンテキストを抽出
- */
-const stripHtml = (html: string): string => {
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .trim();
-};
-
-/**
  * テキストを指定文字数で切り詰め
  */
 const truncateText = (text: string, maxLength: number): string => {
@@ -25,8 +15,7 @@ const truncateText = (text: string, maxLength: number): string => {
 };
 
 export const ProjectOverviewCard = ({ project }: ProjectOverviewCardProps) => {
-  const plainDescription = stripHtml(project.description);
-  const truncatedDescription = truncateText(plainDescription, 100);
+  const truncatedContent = truncateText(project.content, 100);
 
   return (
     <article className="relative flex flex-col gap-6 md:flex-row md:gap-8">
@@ -48,7 +37,7 @@ export const ProjectOverviewCard = ({ project }: ProjectOverviewCardProps) => {
             {project.title}
           </h3>
           <p className="text-sm font-normal leading-normal text-black md:text-base">
-            {truncatedDescription}
+            {truncatedContent}
           </p>
         </div>
 
