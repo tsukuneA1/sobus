@@ -47,7 +47,7 @@ export const MonthlyArchive = ({ projects }: MonthlyArchiveProps) => {
 
   return (
     <aside className="sticky top-[100px]">
-      <h2 className="mb-4 text-[24px] font-semibold leading-[25px] text-primary">
+      <h2 className="mb-4 text-lg md:text-xl font-semibold leading-[25px] text-primary">
         月刊アーカイブ
       </h2>
       <nav>

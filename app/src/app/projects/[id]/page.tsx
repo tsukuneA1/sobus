@@ -19,7 +19,7 @@ const Page = async ({ params }: PageProps) => {
         width={project.sumbnail.width || 800}
         height={project.sumbnail.height || 600}
       />
-      <p>{project.description}</p>
+      <p>{project.content}</p>
       {project.gallery && project.gallery.length > 0 && (
         <div>
           <h2>ギャラリー</h2>
