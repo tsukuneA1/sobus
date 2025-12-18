@@ -1,6 +1,7 @@
 import Image from "next/image";
 import FooterLogo from "@/assets/logo/footer-logo.svg";
 import { GradientLink } from "./gradient-link";
+import { links } from "@/app/constants/links";
 
 export const Footer = () => {
   return (
@@ -15,12 +16,12 @@ export const Footer = () => {
 
         <div className="mt-4 flex w-full max-w-[225px] flex-col gap-6">
           <GradientLink
-            href="https://www.instagram.com/wavoc_social_business_/"
+            href={links.instagram.url}
             text="Instagram"
             target="_blank"
           />
           <GradientLink
-            href="https://x.com/wavoc_sbp"
+            href={links.x.url}
             text="X"
             target="_blank"
           />

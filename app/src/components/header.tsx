@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeaderLogo from "@/assets/logo/header-logo.svg";
-import { HamburgerMenu } from "@/components/HamburgerMenu";
+import { HamburgerMenu } from "@/components/hamburger-menu";
+import { links } from "@/app/constants/links";
 
 export const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-secondary/50 backdrop-blur supports-[backdrop-filter]:bg-secondary/50">
-      <div className="mx-auto flex h-[68px] items-center justify-between px-6">
+      <div className="mx-auto flex h-[68px] items-center justify-between px-4 md:px-6">
         <Link
           href="/"
           aria-label="ソービズのトップへ"
@@ -15,26 +16,26 @@ export const Header = () => {
           <Image
             src={HeaderLogo}
             alt="ソービズロゴ"
-            width={182}
-            height={48}
-            className="h-full w-auto"
+            width={102}
+            height={27}
+            className="h-full w-[102px] md:w-[182px]"
           />
         </Link>
 
         <nav className="flex items-center gap-10">
           <Link
-            href="https://www.instagram.com/wavoc_social_business_/"
+            href={links.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg font-bold text-foreground hover:opacity-80"
+            className="text-lg font-bold text-foreground hover:opacity-80 hidden md:block"
           >
             Instagram
           </Link>
           <Link
-            href="https://x.com/wavoc_sbp"
+            href={links.x.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg font-bold text-foreground hover:opacity-80"
+            className="text-lg font-bold text-foreground hover:opacity-80 hidden md:block"
           >
             X
           </Link>
