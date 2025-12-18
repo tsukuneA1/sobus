@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import BackIcon from "@/assets/guide-button/back.svg";
+import BackgroundPattern from "@/assets/logo/background-pattern.svg";
+import BackgroundPatternWhite from "@/assets/logo/background-pattern-white.svg";
+import Bridges from "@/assets/logo/bridges.svg";
 import { getProjects } from "@/lib/microcms";
 import { MonthlyArchive } from "./_components/monthly-archive";
 import { ProjectOverviewCard } from "./_components/project-overview-card";
-import Bridges from "@/assets/logo/bridges.svg";
-import BackgroundPattern from "@/assets/logo/background-pattern.svg";
-import BackgroundPatternWhite from "@/assets/logo/background-pattern-white.svg";
 
 export const revalidate = 60;
 
