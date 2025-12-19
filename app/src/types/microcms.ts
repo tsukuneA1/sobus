@@ -16,7 +16,7 @@ export type Project = {
   title: string;
   category: string;
   sumbnail: MicroCMSImage;
-  description: string;
+  content: string;
   gallery?: MicroCMSImage[];
 } & MicroCMSBase;
 
