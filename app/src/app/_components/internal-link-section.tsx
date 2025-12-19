@@ -68,7 +68,7 @@ export const InternalLinkSection = () => {
           </div>
         </div>
 
-        <div className="rounded-l-[36px] bg-white w-[85vw] md:shrink-0 p-8 self-end">
+        <div className="rounded-l-[36px] bg-white w-[85vw] md:shrink-0 p-8 self-end md:hidden">
           <div className="flex h-full flex-col justify-between gap-6">
             <div className="space-y-4">
               <h2 className="text-xl font-bold leading-normal text-primary md:text-[24px]">
