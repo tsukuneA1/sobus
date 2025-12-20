@@ -1,8 +1,8 @@
 import Image, { type StaticImageData } from "next/image";
-import founderMessage from "@/assets/sections/history/founder-message.png";
+import GreetingBridge from "@/assets/logo/greeting-bridge.svg";
 // import historyTalk from "@/assets/sections/history/history-talk.png";
 import GreetingBuilding from "@/assets/logo/greeting-building.svg";
-import GreetingBridge from "@/assets/logo/greeting-bridge.svg";
+import founderMessage from "@/assets/sections/history/founder-message.png";
 
 type Story = {
   title: string;

@@ -1,7 +1,7 @@
 import Image from "next/image";
+import MvvCloud from "@/assets/logo/mvv-cloud.svg";
 import building from "@/assets/mvv/building.png";
 import presentation from "@/assets/mvv/presentation.jpg";
-import MvvCloud from "@/assets/logo/mvv-cloud.svg";
 
 type MvvItemProps = {
   firstTitleChar: string;
