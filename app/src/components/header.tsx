@@ -40,7 +40,9 @@ export const Header = () => {
             X
           </Link>
 
-          <HamburgerMenu />
+          <div className="md:hidden">
+            <HamburgerMenu />
+          </div>
         </nav>
       </div>
     </header>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import MvvCloud from "@/assets/logo/mvv-cloud.svg";
 import building from "@/assets/mvv/building.png";
 import presentation from "@/assets/mvv/presentation.jpg";
 
@@ -37,13 +38,19 @@ const MvvItem = ({
 
 export const MvvSection = () => {
   return (
-    <section className="relative flex flex-col justify-end md:mt-[10vh]">
+    <section className="relative flex flex-col justify-end md:mt-[10vh] pb-[15vh]">
       <Image
         src={building}
         alt="背景の建物"
         className="w-full h-auto block absolute bottom-full translate-y-[10%]"
       />
-
+      <Image
+        src={MvvCloud}
+        alt="MVVの王冠ロゴ"
+        width={628}
+        height={523}
+        className="h-[216px] w-auto md:h-[523px] absolute -bottom-0 left-0"
+      />
       <div className="w-[90%] max-w-[1350px] bg-white rounded-l-[35px] md:rounded-l-[70px] pl-[35px] pb-15 pt-[40px] md:px-[80px] md:pt-[80px] md:pb-[110px] self-end relative">
         <header>
           <h2 className="mt-4 mb-4 font-bold text-lg md:text-[32px]">
@@ -67,7 +74,8 @@ export const MvvSection = () => {
               firstTitleChar="V"
               restTitle="ision"
               titleDescription="ビジョン"
-              content="社会課題を解決する担い手を増やす"
+              content=" ボランティアをする学生/ビジネスに関心のある学生が現場で体感・実践すると共に、
+「ソーシャルビジネス」を大学生に伝えていく"
             />
           </div>
 
