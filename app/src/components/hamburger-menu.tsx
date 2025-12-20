@@ -60,7 +60,7 @@ export const HamburgerMenu = () => {
           >
             X
           </Link>
-          <Link
+          {/* <Link
             href={links.home.url}
             onClick={toggleMenu}
             className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
@@ -80,7 +80,7 @@ export const HamburgerMenu = () => {
             className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
           >
             年間スケジュール
-          </Link>
+          </Link> */}
         </nav>
       </div>
     </>

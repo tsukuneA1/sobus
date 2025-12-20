@@ -63,7 +63,7 @@ export const Carousel = () => {
   };
 
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-4">
+    <section className="w-full mx-auto px-4">
       <div className="relative">
         {/* カルーセルコンテナ */}
         <div className="overflow-hidden">
@@ -87,7 +87,7 @@ export const Carousel = () => {
                     return (
                       <div
                         key={offset}
-                        className="relative w-[120px] md:w-[300px] h-[120px] md:h-[300px] shrink-0 drop-shadow-xl"
+                        className="relative w-[35vw] max-w-[500px] aspect-[4/3] shrink-0 drop-shadow-xl"
                         style={{
                           transform,
                           transformStyle: "preserve-3d",
