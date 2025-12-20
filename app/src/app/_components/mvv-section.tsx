@@ -37,24 +37,15 @@ const MvvItem = ({
 
 export const MvvSection = () => {
   return (
-    <section className="w-full bg-secondary flex flex-col items-center">
+    <section className="relative flex flex-col justify-end md:mt-[10vh]">
       <Image
         src={building}
         alt="背景の建物"
-        className="w-full h-auto block relative top-0 m-0"
+        className="w-full h-auto block absolute bottom-full translate-y-[10%]"
       />
 
-      <div className="w-[90%] bg-card rounded-l-[35px] md:rounded-l-[70px] pl-[35px] pb-15 pt-[40px] md:px-[80px] md:pt-[80px] md:pb-[10px] box-border -mt-3.5 ml-auto relative">
-        <figure className="w-[50%] aspect-100/76 overflow-hidden absolute top-1/3 right-0 z-1">
-          <Image
-            src={presentation}
-            alt="プレゼン画像"
-            className="w-full h-full object-cover object-[right_center] opacity-20"
-          />
-          <div className="absolute inset-0 bg-linear-to-r from-white to-transparent"></div>
-        </figure>
-
-        <header className="relative z-2">
+      <div className="w-[90%] max-w-[1350px] bg-white rounded-l-[35px] md:rounded-l-[70px] pl-[35px] pb-15 pt-[40px] md:px-[80px] md:pt-[80px] md:pb-[110px] self-end relative">
+        <header>
           <h2 className="mt-4 mb-4 font-bold text-lg md:text-[32px]">
             私たちは「MVV」を掲げています。
           </h2>
@@ -63,7 +54,7 @@ export const MvvSection = () => {
           </p>
         </header>
 
-        <div className="relative z-2">
+        <div className="relative z-20">
           <MvvItem
             firstTitleChar="M"
             restTitle="ission"
@@ -89,6 +80,15 @@ export const MvvSection = () => {
             />
           </div>
         </div>
+
+        <figure className="w-[50%] aspect-100/76 overflow-hidden absolute top-1/3 right-0">
+          <Image
+            src={presentation}
+            alt="プレゼン画像"
+            className="w-full h-full object-cover object-[right_center] opacity-40"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-white to-transparent"></div>
+        </figure>
       </div>
     </section>
   );
