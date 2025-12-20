@@ -318,7 +318,7 @@ export const Article = ({ title, content }: ArticleProps) => {
 | `<nav>` | ナビゲーション |
 | `<main>` | メインコンテンツ |
 | `<section>` | セクション区切り |
-| `<article>` | 独立したコンテンツ（ブログ記事等） |
+| `<article>` | 独立したコンテンツ（記事等） |
 | `<aside>` | サイドバー、補足情報 |
 | `<footer>` | フッター |
 | `<h1>〜<h6>` | 見出し（階層に応じて） |
@@ -330,14 +330,11 @@ app/src/
 ├── app/                    # Next.js App Router
 │   ├── layout.tsx         # ルートレイアウト
 │   ├── page.tsx           # トップページ（Container）
-│   ├── projects/
-│   │   └── page.tsx       # プロジェクト一覧（Container）
-│   └── blog/
-│       └── page.tsx       # ブログ一覧（Container）
+│   └── projects/
+│       └── page.tsx       # プロジェクト一覧（Container）
 ├── components/            # Presentationalコンポーネント
 │   ├── ui/               # shadcn/uiコンポーネント
 │   ├── ProjectCard.tsx
-│   ├── BlogCard.tsx
 │   └── Header.tsx
 ├── lib/                   # ユーティリティ
 │   ├── microcms.ts       # microCMSクライアント
@@ -442,15 +439,15 @@ export const Card = ({ title }: CardProps) => {
 ## 命名規約
 
 ### コンポーネント名
-- **PascalCase**: `ProjectCard`, `BlogList`
+- **PascalCase**: `ProjectCard`, `ProjectList`
 - **説明的**: 役割が明確に分かる名前
 
 ### ファイル名
-- **PascalCase**: `ProjectCard.tsx`, `BlogList.tsx`
+- **PascalCase**: `ProjectCard.tsx`, `ProjectList.tsx`
 - **コンポーネント名と一致**: ファイル名 = コンポーネント名
 
 ### Props型名
-- **コンポーネント名 + Props**: `ProjectCardProps`, `BlogListProps`
+- **コンポーネント名 + Props**: `ProjectCardProps`, `ProjectListProps`
 
 ```typescript
 // ✅ Good
