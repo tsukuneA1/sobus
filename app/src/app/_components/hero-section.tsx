@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Toplogo from "@/assets/hero-section/sobus-logo.png";
 import TopBridge from "@/assets/hero-section/top-bridge.png";
-import TopBridgeResponsive from "@/assets/hero-section/top-bridge-responsive.png";
 import TopPhoto from "@/assets/hero-section/top-photo.png";
 
 export const HeroSection = () => {
@@ -20,16 +19,15 @@ export const HeroSection = () => {
       <h1 className=" absolute text-[50px]  ml-[18px] mt-[70px] tracking-[8] font-bold text-white md:top-20 md:left-25 md:text-[116px] ">
         SOCIAL<br></br>BUSINESS<br></br>CIRCLE
       </h1>
-   
-        <Image
-          className="absolute top-90 h-[267px]  md:h-[340px] md:w-[1200px] md:top-120"
-          src={TopBridge}
-          alt="top-bridges"
-          width={1000}
-          height={340}
-          
-        />
-       <Image
+
+      <Image
+        className="absolute top-90 h-[267px]  md:h-[340px] md:w-[1200px] md:top-120 object-cover"
+        src={TopBridge}
+        alt="top-bridges"
+        width={1000}
+        height={340}
+      />
+      <Image
         className="w-[221px] h-auto absolute right-[25px] bottom-0 md:right-10 md:w-[421px]"
         src={Toplogo}
         alt="sobus-logo"
