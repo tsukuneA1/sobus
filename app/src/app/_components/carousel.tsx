@@ -2,12 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import CarouselImage1 from "@/assets/carousel/demo1.png";
-import CarouselImage2 from "@/assets/carousel/demo2.png";
-import CarouselImage3 from "@/assets/carousel/demo3.png";
-import CarouselImage4 from "@/assets/carousel/demo4.png";
-import BackIcon from "@/assets/guide-button/back.svg";
-import NextIcon from "@/assets/guide-button/next.svg";
+import CarouselImage1 from "@/assets/carousel/carousel-1.jpg";
+import CarouselImage2 from "@/assets/carousel/carousel-2.jpg";
+import CarouselImage3 from "@/assets/carousel/carousel-3.jpg";
 
 const images = [
   {
@@ -25,18 +22,20 @@ const images = [
     src: CarouselImage3,
     alt: "Activity 3",
   },
-  {
-    id: 4,
-    src: CarouselImage4,
-    alt: "Activity 4",
-  },
 ];
 
-const getClipPath = (position: number) => {
-  if (position === 0) return "polygon(0% 15%, 100% 0%, 100% 100%, 0% 85%)"; // 左
-  if (position === 1) return null;
-  if (position === 2) return "polygon(0% 0%, 100% 15%, 100% 85%, 0% 100%)"; // 右
-  return null;
+const getTransform = (position: number) => {
+  if (position === 0) return "perspective(1000px) rotateY(-45deg)"; // 左：左に45度回転
+  if (position === 1) return "perspective(1000px) rotateY(0deg)"; // 中央：回転なし
+  if (position === 2) return "perspective(1000px) rotateY(45deg)"; // 右：右に45度回転
+  return "perspective(1000px) rotateY(0deg)";
+};
+
+const getTransformOrigin = (position: number) => {
+  if (position === 0) return "center right"; // 左：右端を軸に回転
+  if (position === 1) return "center center"; // 中央：中心を軸に回転
+  if (position === 2) return "center left"; // 右：左端を軸に回転
+  return "center center";
 };
 
 export const Carousel = () => {
@@ -77,42 +76,32 @@ export const Carousel = () => {
                 key={image.id}
                 className="w-full shrink-0 flex justify-center"
               >
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-[65px]">
+                <div className="flex flex-row items-center justify-center gap-2 md:gap-[65px]">
                   {/* 3枚の画像を横並びで表示 */}
                   {[0, 1, 2].map((offset) => {
                     const imgIndex = (currentIndex + offset) % totalSlides;
                     const img = images[imgIndex];
-                    const clipPath = getClipPath(offset);
+                    const transform = getTransform(offset);
+                    const transformOrigin = getTransformOrigin(offset);
 
                     return (
                       <div
                         key={offset}
-                        className="relative w-full md:w-[300px] h-[200px] md:h-[300px] shrink-0 drop-shadow-xl"
+                        className="relative w-[120px] md:w-[300px] h-[120px] md:h-[300px] shrink-0 drop-shadow-xl"
+                        style={{
+                          transform,
+                          transformStyle: "preserve-3d",
+                          transformOrigin,
+                        }}
                       >
-                        {clipPath ? (
-                          <div
-                            className="relative w-full h-full overflow-hidden"
-                            style={{
-                              clipPath,
-                            }}
-                          >
-                            <Image
-                              src={img.src}
-                              alt={img.alt}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        ) : (
-                          <div className="relative w-full h-full overflow-hidden">
-                            <Image
-                              src={img.src}
-                              alt={img.alt}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        )}
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
                       </div>
                     );
                   })}
@@ -122,24 +111,22 @@ export const Carousel = () => {
           </div>
         </div>
 
-        {/* 前へボタン */}
         <button
           type="button"
           onClick={goToPrevious}
-          className="absolute left-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-80 z-10"
+          className="absolute left-0 top-0 w-1/2 h-full cursor-pointer z-10"
           aria-label="Previous slide"
         >
-          <Image src={BackIcon} alt="Previous" width={48} height={48} />
+          <span className="sr-only">前の画像へ</span>
         </button>
 
-        {/* 次へボタン */}
         <button
           type="button"
           onClick={goToNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 transition-opacity hover:opacity-80 z-10"
+          className="absolute right-0 top-0 w-1/2 h-full cursor-pointer z-10"
           aria-label="Next slide"
         >
-          <Image src={NextIcon} alt="Next" width={48} height={48} />
+          <span className="sr-only">次の画像へ</span>
         </button>
 
         {/* インジケーター */}

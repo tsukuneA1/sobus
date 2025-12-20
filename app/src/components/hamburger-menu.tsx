@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { links } from "@/app/constants/links";
 
 export const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,21 +45,37 @@ export const HamburgerMenu = () => {
       >
         <nav className="flex flex-col items-center gap-8 py-[87px]">
           <Link
-            href="/"
+            href={links.instagram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80 md:hidden"
+          >
+            Instagram
+          </Link>
+          <Link
+            href={links.x.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80 md:hidden"
+          >
+            X
+          </Link>
+          <Link
+            href={links.home.url}
             onClick={toggleMenu}
             className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
           >
             トップページ
           </Link>
           <Link
-            href="/projects"
+            href={links.projects.url}
             onClick={toggleMenu}
             className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
           >
             活動実績
           </Link>
           <Link
-            href="/schedules"
+            href={links.schedules.url}
             onClick={toggleMenu}
             className="font-zen-kaku text-2xl font-bold leading-normal text-white transition-opacity hover:opacity-80"
           >
