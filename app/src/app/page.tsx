@@ -9,7 +9,8 @@ import { MvvSection } from "./_components/mvv-section";
 export default async function Home() {
   return (
     <main className="flex min-h-screen w-full flex-col gap-[105px]">
-      <HeroSection />
+      
+      <HeroSection/>
       <MvvSection />
       <AboutSection />
       <Carousel />

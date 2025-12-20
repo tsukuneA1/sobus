@@ -46,7 +46,7 @@ export const MvvSection = () => {
             </p>
           </div>
 
-          <div className="ml-[10vw]">
+          <div className="ml-0 md:ml-[10vw]">
             <h3 className="font-bold mt-3 mb-3 flex items-end">
               <span className="text-[100px] leading-none">V</span>
               <span className="text-[80px] leading-none bg-linear-to-r from-accent-green to-primary bg-clip-text text-transparent opacity-60">
@@ -62,7 +62,7 @@ export const MvvSection = () => {
             </p>
           </div>
 
-          <div className="ml-[20vw]">
+          <div className="ml-0 md:ml-[20vw]">
             <h3 className="font-bold mt-3 mb-3 flex items-end">
               <span className="text-[100px] leading-none">V</span>
               <span className="text-[80px] leading-none bg-linear-to-r from-accent-green to-primary bg-clip-text text-transparent opacity-60">
